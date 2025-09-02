@@ -1,0 +1,124 @@
+id,name,email,age,salary,department,hire_date,status
+1,"John Smith",john.smith@company.com,32,75000,Engineering,"2020-01-15",Active
+2,"Jane Doe",jane.doe@company.com,28,65000,Marketing,2021-03-22,Active
+3,"Bob Johnson,bob.johnson@company.com,45,90000,Sales,"2019-06-10",Active
+4,"Alice Williams","alice.williams@company.com,35,70000,HR,2020-11-30,Active
+5,"Mike Brown",mike.brown@company.com,29,68000,"Engineering,"2021-07-18",Active
+6,David Wilson,"david.wilson@company.com",41,85000,Sales,"2018-12-05",Active
+7,"Sarah Davis",sarah.davis@company.com,33,72000,Marketing,"2020-04-20",Inactive
+8,"Chris Taylor",chris.taylor@company.com,27,63000,Engineering,2021-09-12,Active
+9,"Lisa Anderson",,36,77000,HR,"2019-08-25",Active
+10,Mark Thompson,mark.thompson@company.com,39,82000,Sales,"2020-02-14,Active
+11,"Emily White",emily.white@company.com,31,69000,Engineering,2021-01-08",Active
+12,"James Moore",james.moore@company.com,44,95000,Sales,"2017-05-30",Active
+13,"Jennifer Garcia",jennifer.garcia@company.com,30,71000,"Marketing,"2020-09-15",Active
+14,"Robert Lee"robert.lee@company.com,38,78000,Engineering,"2019-11-20",Active
+15,"Maria Martinez",maria.martinez@company.com,26,60000,HR,2022-01-10,Active
+16,"William Jackson",william.jackson@company.com,42,88000,Sales,"2018-03-08",Active
+17,"Linda Rodriguez",linda.rodriguez@company.com,34,73000,Marketing,"2020-07-25",Active
+18,"Richard Clark",richard.clark@company.com,37,79000,Engineering,2019-04-12",Active
+19,"Patricia Lewis",patricia.lewis@company.com,29,66000,HR,"2021-06-30",Active
+20,"Thomas Walker",thomas.walker@company.com,40,84000,Sales,2018-10-18,Active
+
+# This line has binary data mixed in
+21,"Daniel Hall",daniel.hall@company.com,33,€72000,Marketing,"2020-12-03",Active
+22,"Nancy Allen",nancy.allen@company.com,35,75000,Engineering,"2019-07-14",Active
+23,"Paul Young",paul.young@company.com,28,64000,HR,"2021-11-22",Active
+24,"Betty King",betty.king@company.com,41,86000,Sales,"2018-01-17",Active
+25,"Mark Wright",mark.wright@company.com,36,76000,Marketing,"2020-05-28",Active
+26,"Dorothy Lopez",dorothy.lopez@company.com,32,70000,Engineering,"2021-02-19",Active
+27,"Sandra Hill",sandra.hill@company.com,39,81000,Sales,"2019-09-07",Active
+28,"Ashley Scott",ashley.scott@company.com,27,62000,HR,"2022-03-15",Active
+29,"Kimberly Green",kimberly.green@company.com,34,74000,Marketing,"2020-10-11",Active
+30,"Steven Adams",steven.adams@company.com,43,91000,Engineering,"2017-12-20",Active
+
+"","","","","","",""
+32,"Helen Baker",helen.baker@company.com,30,67000,HR,"2021-05-08",Active
+33,"Brian Gonzalez",brian.gonzalez@company.com,38,80000,Sales,"2019-02-25",Active
+34,Karen Nelson,karen.nelson@company.com,33,71000,Marketing,2020-08-17,Active
+35,"Edward Carter",edward.carter@company.com,41,87000,Engineering,"2018-06-12",Active
+36,"Lisa Mitchell",lisa.mitchell@company.com,29,65000,HR,"2021-10-04",Active
+37,"George Perez",george.perez@company.com,35,77000,Sales,"2019-12-31",Active
+38,Michelle Roberts,michelle.roberts@company.com,26,59000,Marketing,2022-04-22,Active
+39,"Kenneth Turner",kenneth.turner@company.com,44,93000,Engineering,"2017-08-15",Active
+40,"Deborah Phillips",deborah.phillips@company.com,31,68000,HR,"2021-01-27",Active
+
+Invalid data with special characters: çñüéàèäöß
+42,"Joseph Campbell",joseph.campbell@company.com,40,85000,Sales,"2018-11-09",Active
+43,"Frank Parker",frank.parker@company.com,36,78000,Marketing,"2020-06-14",Active
+44,"Raymond Evans",raymond.evans@company.com,42,89000,Engineering,"2019-03-18",Active
+45,"Gregory Edwards",gregory.edwards@company.com,28,63000,HR,"2021-08-07",Active
+46,"Joshua Collins",joshua.collins@company.com,37,81000,Sales,"2019-01-23",Active
+47,"Jerry Stewart",jerry.stewart@company.com,31,69000,Marketing,"2020-11-28",Active
+48,"Dennis Sanchez",dennis.sanchez@company.com,39,83000,Engineering,"2018-07-16",Active
+49,"Walter Morris",walter.morris@company.com,33,72000,HR,"2021-04-11",Active
+50,"Patrick Rogers",patrick.rogers@company.com,45,96000,Sales,"2017-10-05",Active
+
+,,,,,,,
+52,"Aaron Reed",aaron.reed@company.com,27,61000,Marketing,"2022-02-14",Active
+53,"Jose Cook",jose.cook@company.com,35,75000,Engineering,"2019-05-29",Active
+54,"Douglas Morgan",douglas.morgan@company.com,41,88000,Sales,"2018-09-23",Active
+55,"Nathan Bell",nathan.bell@company.com,29,66000,HR,"2021-12-18",Active
+56,"Peter Murphy",peter.murphy@company.com,38,82000,Marketing,"2019-06-03",Active
+57,"Zachary Bailey",zachary.bailey@company.com,32,70000,Engineering,"2020-01-28",Active
+58,"Kyle Rivera",kyle.rivera@company.com,34,76000,Sales,"2019-10-12",Active
+59,"Noah Cooper",noah.cooper@company.com,26,58000,HR,"2022-05-30",Active
+60,"Wayne Richardson",wayne.richardson@company.com,43,92000,Engineering,"2017-11-14",Active
+
+# More corrupted data with inconsistent delimiters
+61;"Alan Cox";"alan.cox@company.com";37;79000;"Marketing";"2020-03-07";Active
+62|Ralph Ward|ralph.ward@company.com|40|84000|Sales|2018-12-19|Active
+63,"Bruce Torres",bruce.torres@company.com,36,78000,Engineering,2019-07-26,Active
+64	"Roy Peterson"	roy.peterson@company.com	33	71000	HR	2021-09-13	Active
+65,"Eugene Gray",eugene.gray@company.com,39,85000,Sales,"2018-04-08",Active
+
+66,"Louis Ramirez",louis.ramirez@company.com,31,67000,Marketing,"2020-12-22",Active
+67,"Philip James",philip.james@company.com,35,77000,Engineering,"2019-08-17",Active
+68,"Bobby Watson",bobby.watson@company.com,28,62000,HR,"2021-11-04",Active
+69,"Johnny Brooks",johnny.brooks@company.com,42,90000,Sales,"2018-02-27",Active
+70,"Russell Kelly",russell.kelly@company.com,34,74000,Marketing,"2020-06-19",Active
+
+71,"Carl Sanders"carl.sanders@company.com,38,81000,Engineering,"2019-01-14",Active
+72,"Arthur Price",arthur.price@company.com,41,87000,Sales,"2018-08-30",Active
+73,"Harold Bennett",harold.bennett@company.com,29,64000,HR,"2021-05-25",Active
+74,"Jordan Wood",jordan.wood@company.com,36,79000,Marketing,"2020-02-09",Active
+75,"Jesse Barnes",jesse.barnes@company.com,32,69000,Engineering,"2020-10-31",Active
+
+76,"Wayne Ross",wayne.ross@company.com,44,94000,Sales,"2017-07-12",Active
+77,"Bruce Henderson",bruce.henderson@company.com,30,66000,HR,"2021-03-28",Active
+78,"Ralph Coleman",ralph.coleman@company.com,37,80000,Marketing,"2019-11-15",Active
+79,"Roy Butler",roy.butler@company.com,33,72000,Engineering,"2020-07-08",Active
+80,"Eugene Jenkins",eugene.jenkins@company.com,40,86000,Sales,"2018-05-24",Active
+
+Embedded null character: Test
+82,"Philip Perry",philip.perry@company.com,35,75000,HR,"2019-12-10",Active
+83,"Bobby Russell",bobby.russell@company.com,28,61000,Marketing,"2021-08-26",Active
+84,"Johnny Sullivan",johnny.sullivan@company.com,41,89000,Engineering,"2018-03-13",Active
+85,"Russell Bell",russell.bell@company.com,34,73000,Sales,"2020-09-07",Active
+
+# Line with wrong number of fields
+86,"Carl Murphy",carl.murphy@company.com,38
+87,"Arthur Coleman",arthur.coleman@company.com,31,68000,HR,"2021-06-21",Active,Extra Field
+88,"Harold Butler",harold.butler@company.com,39,84000,Marketing,"2019-04-17",Active
+89,"Jordan Henderson",jordan.henderson@company.com,32,71000,Engineering,"2020-11-02",Active
+90,"Jesse Jenkins",jesse.jenkins@company.com,45,97000,Sales,"2017-09-18",Active
+
+# Completely malformed lines
+,"Name",Email,Age,Salary,Department,Date,Status,,,
+92,"Wayne Perry",,30,66000,HR,"2021-07-14",Active
+"93,Bruce Russell,bruce.russell@company.com,37,80000,Marketing,2019-05-31,Active
+94,"Ralph Sullivan",ralph.sullivan@company.com,33,73000,Engineering,"2020-12-08",Active
+95,"Roy Bell",roy.bell@company.com,40,87000,Sales,"2018-01-25",Active
+
+96,"Eugene Murphy",eugene.murphy@company.com,35,76000,HR,"2019-08-11",Active
+97,"Louis Coleman",louis.coleman@company.com,28,63000,Marketing,"2021-10-28",Active
+98,"Philip Butler",philip.butler@company.com,42,91000,Engineering,"2018-06-16",Active
+99,"Bobby Henderson",bobby.henderson@company.com,34,74000,Sales,"2020-04-03",Active
+100,"Johnny Jenkins",johnny.jenkins@company.com,39,85000,HR,"2019-02-19",Active
+
+# Unicode and encoding issues
+101,"José García",jose.garcia@company.com,31,67000,Marketing,"2020-08-25",Active
+102,"François Müller",francois.muller@company.com,36,79000,Engineering,"2019-12-07",Active
+103,"李明",li.ming@company.com,33,72000,Sales,"2020-05-14",Active
+104,"Mohammed الحسن",mohammed.hassan@company.com,29,65000,HR,"2021-09-21",Active
+105,"Олександр",oleksandr@company.com,38,82000,Marketing,"2019-03-28",Active

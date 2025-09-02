@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inventory xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" last_updated="2023-12-01T10:30:00Z">
+  <products>
+    <product id="1001" category="electronics" featured="true">
+      <name>Wireless Bluetooth Headphones</name>
+      <description><![CDATA[High-quality wireless headphones with noise cancellation. Perfect for music lovers and professionals alike.]]></description>
+      <price currency="USD">199.99</price>
+      <stock_quantity>150</stock_quantity>
+      <manufacturer>
+        <name>AudioTech</name>
+        <country>USA</country>
+        <contact_email>support@audiotech.com</contact_email>
+      </manufacturer>
+      <specifications>
+        <spec name="battery_life">30 hours</spec>
+        <spec name="weight">250g</spec>
+        <spec name="wireless_range">10m</spec>
+        <spec name="driver_size">40mm</spec>
+      </specifications>
+      <tags>
+        <tag>wireless</tag>
+        <tag>bluetooth</tag>
+        <tag>noise-cancelling</tag>
+        <tag>premium</tag>
+      </tags>
+    </product>
+
+    <product id="1002" category="clothing">
+      <name>Organic Cotton T-Shirt</name>
+      <description>Comfortable 100% organic cotton t-shirt available in multiple colors and sizes.</description>
+      <price currency="USD">24.99</price>
+      <stock_quantity>500</stock_quantity>
+      <manufacturer>
+        <name>EcoWear</name>
+        <country>India</country>
+        <contact_email>info@ecowear.in</contact_email>
+      </manufacturer>
+      <variants>
+        <variant color="black" size="S" sku="ECO-TS-BLK-S" stock="45"/>
+        <variant color="black" size="M" sku="ECO-TS-BLK-M" stock="67"/>
+        <variant color="black" size="L" sku="ECO-TS-BLK-L" stock="89"/>
+        <variant color="white" size="S" sku="ECO-TS-WHT-S" stock="34"/>
+        <variant color="white" size="M" sku="ECO-TS-WHT-M" stock="78"/>
+        <variant color="white" size="L" sku="ECO-TS-WHT-L" stock="92"/>
+        <variant color="navy" size="S" sku="ECO-TS-NVY-S" stock="23"/>
+        <variant color="navy" size="M" sku="ECO-TS-NVY-M" stock="56"/>
+        <variant color="navy" size="L" sku="ECO-TS-NVY-L" stock="16"/>
+      </variants>
+      <tags>
+        <tag>organic</tag>
+        <tag>cotton</tag>
+        <tag>eco-friendly</tag>
+        <tag>casual</tag>
+      </tags>
+    </product>
+
+    <product id="1003" category="home_garden" featured="true">
+      <name>Smart Indoor Plant Monitor</name>
+      <description><![CDATA[IoT device that monitors your plants' health including soil moisture, light levels, and temperature. Connects to your smartphone via Wi-Fi.]]></description>
+      <price currency="USD">79.99</price>
+      <stock_quantity>75</stock_quantity>
+      <manufacturer>
+        <name>GreenTech Solutions</name>
+        <country>Germany</country>
+        <contact_email>support@greentech.de</contact_email>
+      </manufacturer>
+      <specifications>
+        <spec name="connectivity">Wi-Fi 2.4GHz</spec>
+        <spec name="battery_life">6 months</spec>
+        <spec name="sensors">moisture, light, temperature</spec>
+        <spec name="app_support">iOS, Android</spec>
+      </specifications>
+      <compatibility>
+        <plant_type>succulents</plant_type>
+        <plant_type>herbs</plant_type>
+        <plant_type>vegetables</plant_type>
+        <plant_type>flowers</plant_type>
+      </compatibility>
+      <tags>
+        <tag>smart-home</tag>
+        <tag>iot</tag>
+        <tag>gardening</tag>
+        <tag>monitoring</tag>
+      </tags>
+    </product>
+
+    <!-- This product has malformed XML - missing closing tag for manufacturer -->
+    <product id="1004" category="books">
+      <name>The Art of Data Wrangling</name>
+      <description>Comprehensive guide to cleaning, transforming, and analyzing messy data using command-line tools.</description>
+      <price currency="USD">45.99</price>
+      <stock_quantity>200</stock_quantity>
+      <manufacturer>
+        <name>Tech Publishing House</name>
+        <country>UK</country>
+        <contact_email>books@techpub.co.uk</contact_email>
+      <!-- Missing closing manufacturer tag -->
+      <author>Dr. Sarah Johnson</author>
+      <isbn>978-0-123456-78-9</isbn>
+      <pages>456</pages>
+      <publication_year>2023</publication_year>
+      <tags>
+        <tag>data-science</tag>
+        <tag>programming</tag>
+        <tag>technical</tag>
+        <tag>reference</tag>
+      </tags>
+    </product>
+
+    <product id="1005" category="sports" featured="false">
+      <name>Professional Basketball</name>
+      <description>Official size and weight basketball approved for professional games.</description>
+      <price currency="USD">89.99</price>
+      <stock_quantity>120</stock_quantity>
+      <manufacturer>
+        <name>SportsPro</name>
+        <country>USA</country>
+        <contact_email>sales@sportspro.com</contact_email>
+      </manufacturer>
+      <specifications>
+        <spec name="size">Official (29.5")</spec>
+        <spec name="weight">22oz</spec>
+        <spec name="material">Composite leather</spec>
+        <spec name="indoor_outdoor">Both</spec>
+      </specifications>
+      <certifications>
+        <certification>NBA Official</certification>
+        <certification>FIBA Approved</certification>
+      </certifications>
+      <tags>
+        <tag>basketball</tag>
+        <tag>professional</tag>
+        <tag>official</tag>
+        <tag>sports</tag>
+      </tags>
+    </product>
+
+    <product id="1006" category="automotive">
+      <name>Universal Car Phone Mount</name>
+      <description>Adjustable phone mount that fits most smartphones and attaches securely to car dashboard or windshield.</description>
+      <price currency="USD">19.99</price>
+      <stock_quantity>300</stock_quantity>
+      <manufacturer>
+        <name>AutoAccessories Inc</name>
+        <country>China</country>
+        <contact_email>support@autoacc.cn</contact_email>
+      </manufacturer>
+      <compatibility>
+        <phone_size min="4.0" max="6.8" unit="inches"/>
+        <mounting_options>
+          <option>dashboard</option>
+          <option>windshield</option>
+          <option>air_vent</option>
+        </mounting_options>
+      </compatibility>
+      <tags>
+        <tag>car-accessories</tag>
+        <tag>phone-mount</tag>
+        <tag>universal</tag>
+        <tag>adjustable</tag>
+      </tags>
+    </product>
+
+    <!-- Malformed product - has invalid characters in price -->
+    <product id="1007" category="health_beauty">
+      <name>Vitamin C Serum</name>
+      <description>Anti-aging vitamin C serum with hyaluronic acid for brighter, younger-looking skin.</description>
+      <price currency="USD">$29.99 (invalid)</price>  <!-- Invalid price format -->
+      <stock_quantity>abc</stock_quantity>  <!-- Invalid stock quantity -->
+      <manufacturer>
+        <name>Beauty Labs & Co</name>
+        <country>France</country>
+        <contact_email>contact@beautylabs.fr</contact_email>
+      </manufacturer>
+      <ingredients>
+        <ingredient percentage="20">Vitamin C (L-Ascorbic Acid)</ingredient>
+        <ingredient percentage="5">Hyaluronic Acid</ingredient>
+        <ingredient percentage="2">Vitamin E</ingredient>
+        <ingredient>Purified Water</ingredient>
+        <ingredient>Glycerin</ingredient>
+      </ingredients>
+      <usage_instructions>
+        <step>Cleanse face thoroughly</step>
+        <step>Apply 2-3 drops to face and neck</step>
+        <step>Gently massage until absorbed</step>
+        <step>Follow with moisturizer and sunscreen</step>
+      </usage_instructions>
+      <tags>
+        <tag>skincare</tag>
+        <tag>anti-aging</tag>
+        <tag>vitamin-c</tag>
+        <tag>serum</tag>
+      </tags>
+    </product>
+
+    <product id="1008" category="toys_games">
+      <name>Educational Building Blocks Set</name>
+      <description><![CDATA[STEM-focused building blocks set with 500 pieces. Encourages creativity, problem-solving, and spatial thinking in children ages 4-12.]]></description>
+      <price currency="USD">49.99</price>
+      <stock_quantity>180</stock_quantity>
+      <manufacturer>
+        <name>EduToys</name>
+        <country>Denmark</country>
+        <contact_email>info@edutoys.dk</contact_email>
+      </manufacturer>
+      <age_range min="4" max="12"/>
+      <piece_count>500</piece_count>
+      <educational_benefits>
+        <benefit>Develops fine motor skills</benefit>
+        <benefit>Enhances spatial awareness</benefit>
+        <benefit>Promotes creative thinking</benefit>
+        <benefit>Improves problem-solving abilities</benefit>
+      </educational_benefits>
+      <safety_certifications>
+        <certification>CE Marking</certification>
+        <certification>ASTM F963</certification>
+        <certification>CPSIA Compliant</certification>
+      </safety_certifications>
+      <tags>
+        <tag>educational</tag>
+        <tag>building-blocks</tag>
+        <tag>stem</tag>
+        <tag>creative</tag>
+      </tags>
+    </product>
+
+    <product id="1009" category="electronics" featured="true">
+      <name>4K Webcam with Auto Focus</name>
+      <description>Professional-grade 4K webcam with auto-focus, noise reduction microphone, and wide-angle lens perfect for video conferences and streaming.</description>
+      <price currency="USD">149.99</price>
+      <stock_quantity>95</stock_quantity>
+      <manufacturer>
+        <name>StreamTech</name>
+        <country>South Korea</country>
+        <contact_email>support@streamtech.kr</contact_email>
+      </manufacturer>
+      <specifications>
+        <spec name="resolution">4K (3840x2160) @ 30fps</spec>
+        <spec name="field_of_view">90 degrees</spec>
+        <spec name="microphone">Dual stereo with noise reduction</spec>
+        <spec name="connection">USB 3.0</spec>
+        <spec name="compatibility">Windows 10+, macOS 10.14+, Linux</spec>
+      </specifications>
+      <features>
+        <feature>Auto-focus</feature>
+        <feature>Low-light correction</feature>
+        <feature>Privacy shutter</feature>
+        <feature>Tripod mounting</feature>
+      </features>
+      <tags>
+        <tag>4k</tag>
+        <tag>webcam</tag>
+        <tag>streaming</tag>
+        <tag>video-conference</tag>
+      </tags>
+    </product>
+
+    <!-- This product has nested CDATA sections which can cause parsing issues -->
+    <product id="1010" category="home_garden">
+      <name>Smart Thermostat</name>
+      <description><![CDATA[Wi-Fi enabled smart thermostat with learning algorithms. <![CDATA[Saves up to 23% on heating and cooling costs.]]> Compatible with most HVAC systems.]]></description>
+      <price currency="USD">249.99</price>
+      <stock_quantity>60</stock_quantity>
+      <manufacturer>
+        <name>HomeTech Systems</name>
+        <country>Canada</country>
+        <contact_email>info@hometech.ca</contact_email>
+      </manufacturer>
+      <specifications>
+        <spec name="connectivity">Wi-Fi 802.11 b/g/n</spec>
+        <spec name="display">3.5" color touchscreen</spec>
+        <spec name="sensors">Temperature, humidity, motion, light</spec>
+        <spec name="power">24V common wire or battery backup</spec>
+      </specifications>
+      <compatibility>
+        <hvac_type>Central heating and cooling</hvac_type>
+        <hvac_type>Heat pump</hvac_type>
+        <hvac_type>Radiant heating</hvac_type>
+        <hvac_type>Forced air</hvac_type>
+      </compatibility>
+      <smart_features>
+        <feature>Learning schedule</feature>
+        <feature>Geofencing</feature>
+        <feature>Energy reports</feature>
+        <feature>Remote control via app</feature>
+        <feature>Voice control (Alexa, Google)</feature>
+      </smart_features>
+      <tags>
+        <tag>smart-home</tag>
+        <tag>thermostat</tag>
+        <tag>energy-saving</tag>
+        <tag>wifi</tag>
+      </tags>
+    </product>
+
+    <!-- Product with unescaped special characters in description -->
+    <product id="1011" category="books">
+      <name>JavaScript & Node.js Guide</name>
+      <description>Learn JavaScript & Node.js development with practical examples. Covers ES6+, async/await, REST APIs & more! Perfect for beginners & experts.</description>
+      <price currency="USD">39.99</price>
+      <stock_quantity>150</stock_quantity>
+      <manufacturer>
+        <name>Code Publishers</name>
+        <country>USA</country>
+        <contact_email>books@codepub.com</contact_email>
+      </manufacturer>
+      <author>Mike Developer</author>
+      <isbn>978-1-234567-89-0</isbn>
+      <pages>520</pages>
+      <publication_year>2023</publication_year>
+      <topics>
+        <topic>JavaScript Fundamentals</topic>
+        <topic>ES6+ Features</topic>
+        <topic>Node.js Development</topic>
+        <topic>REST API Design</topic>
+        <topic>Database Integration</topic>
+        <topic>Testing & Debugging</topic>
+      </topics>
+      <tags>
+        <tag>javascript</tag>
+        <tag>nodejs</tag>
+        <tag>programming</tag>
+        <tag>web-development</tag>
+      </tags>
+    </product>
+
+    <product id="1012" category="clothing" featured="false">
+      <name>Waterproof Hiking Jacket</name>
+      <description><![CDATA[Professional-grade waterproof and breathable hiking jacket. Features include adjustable hood, multiple pockets, and reinforced seams.]]></description>
+      <price currency="EUR">159.99</price>  <!-- Different currency -->
+      <stock_quantity>85</stock_quantity>
+      <manufacturer>
+        <name>OutdoorGear Pro</name>
+        <country>Norway</country>
+        <contact_email>gear@outdoorpro.no</contact_email>
+      </manufacturer>
+      <materials>
+        <material percentage="100">Recycled Polyester</material>
+        <coating>DWR (Durable Water Repellent)</coating>
+        <membrane>Breathable waterproof membrane</membrane>
+      </materials>
+      <sizing>
+        <size name="XS" chest="34-36" waist="28-30"/>
+        <size name="S" chest="36-38" waist="30-32"/>
+        <size name="M" chest="38-40" waist="32-34"/>
+        <size name="L" chest="40-42" waist="34-36"/>
+        <size name="XL" chest="42-44" waist="36-38"/>
+        <size name="XXL" chest="44-46" waist="38-40"/>
+      </sizing>
+      <features>
+        <feature>Fully seam sealed</feature>
+        <feature>Adjustable hood</feature>
+        <feature>Two-way front zipper</feature>
+        <feature>Multiple pockets</feature>
+        <feature>Ventilation zips</feature>
+      </features>
+      <tags>
+        <tag>hiking</tag>
+        <tag>waterproof</tag>
+        <tag>outdoor</tag>
+        <tag>jacket</tag>
+      </tags>
+    </product>
+
+    <!-- This product is missing closing tags and has malformed structure -->
+    <product id="1013" category="electronics">
+      <name>Wireless Gaming Mouse
+      <description>High-precision wireless gaming mouse with RGB lighting and customizable buttons.
+      <price currency="USD">79.99
+      <stock_quantity>200
+      <manufacturer>
+        <name>GamerTech
+        <country>Taiwan
+      <!-- Multiple missing closing tags -->
+      <specifications>
+        <spec name="dpi">16000 DPI</spec>
+        <spec name="polling_rate">1000 Hz</spec>
+        <spec name="battery">70-hour battery life</spec>
+        <spec name="connection">2.4GHz wireless + USB-C</spec>
+      </specifications>
+      <rgb_lighting zones="5" patterns="12"/>
+      <programmable_buttons count="8"/>
+      <tags>
+        <tag>gaming</tag>
+        <tag>wireless</tag>
+        <tag>rgb</tag>
+        <tag>high-dpi</tag>
+      </tags>
+
+    <product id="1014" category="health_beauty">
+      <name>Essential Oils Starter Kit</name>
+      <description><![CDATA[Complete essential oils starter kit with 10 popular oils including lavender, peppermint, eucalyptus, and tea tree. Includes diffuser and carrier oil.]]></description>
+      <price currency="USD">89.99</price>
+      <stock_quantity>110</stock_quantity>
+      <manufacturer>
+        <name>Natural Wellness Co</name>
+        <country>Australia</country>
+        <contact_email>wellness@naturalco.au</contact_email>
+      </manufacturer>
+      <kit_contents>
+        <oil name="Lavender" size="10ml" properties="relaxing, sleep aid"/>
+        <oil name="Peppermint" size="10ml" properties="energizing, headache relief"/>
+        <oil name="Eucalyptus" size="10ml" properties="respiratory support, antimicrobial"/>
+        <oil name="Tea Tree" size="10ml" properties="antiseptic, acne treatment"/>
+        <oil name="Lemon" size="10ml" properties="uplifting, cleansing"/>
+        <oil name="Orange" size="10ml" properties="mood boosting, stress relief"/>
+        <oil name="Rosemary" size="10ml" properties="focus, memory enhancement"/>
+        <oil name="Frankincense" size="10ml" properties="meditation, skin care"/>
+        <oil name="Chamomile" size="5ml" properties="calming, anti-inflammatory"/>
+        <oil name="Ylang Ylang" size="5ml" properties="aphrodisiac, anxiety relief"/>
+        <accessory name="Ultrasonic Diffuser" specifications="100ml capacity, LED lighting"/>
+        <accessory name="Jojoba Carrier Oil" size="30ml" use="dilution, massage"/>
+      </kit_contents>
+      <usage_guide>
+        <method name="diffusion">Add 3-5 drops to diffuser with water</method>
+        <method name="topical">Dilute with carrier oil before skin application</method>
+        <method name="inhalation">Add few drops to tissue or hands</method>
+      </usage_guide>
+      <tags>
+        <tag>essential-oils</tag>
+        <tag>aromatherapy</tag>
+        <tag>natural</tag>
+        <tag>wellness</tag>
+      </tags>
+    </product>
+
+    <product id="1015" category="toys_games" featured="true">
+      <name>Remote Control Drone with Camera</name>
+      <description>Entry-level drone with HD camera, perfect for beginners. Features include altitude hold, one-key takeoff/landing, and smartphone app control.</description>
+      <price currency="USD">129.99</price>
+      <stock_quantity>75</stock_quantity>
+      <manufacturer>
+        <name>SkyTech Drones</name>
+        <country>USA</country>
+        <contact_email>support@skytech-drones.com</contact_email>
+      </manufacturer>
+      <specifications>
+        <spec name="camera">720P HD</spec>
+        <spec name="flight_time">15 minutes</spec>
+        <spec name="control_range">80 meters</spec>
+        <spec name="charging_time">60 minutes</spec>
+        <spec name="weight">120g</spec>
+      </specifications>
+      <features>
+        <feature>Altitude hold</feature>
+        <feature>Headless mode</feature>
+        <feature>One-key return</feature>
+        <feature>360-degree flips</feature>
+        <feature>LED lights</feature>
+        <feature>App control</feature>
+      </features>
+      <age_recommendation min="14"/>
+      <safety_features>
+        <feature>Propeller guards</feature>
+        <feature>Emergency stop</feature>
+        <feature>Low battery alarm</feature>
+        <feature>Out of range alarm</feature>
+      </safety_features>
+      <tags>
+        <tag>drone</tag>
+        <tag>camera</tag>
+        <tag>remote-control</tag>
+        <tag>beginner</tag>
+      </tags>
+    </product>
+
+    <!-- Final product with some encoding issues and special characters -->
+    <product id="1016" category="home_garden">
+      <name>Café Quality Espresso Machine</name>  <!-- Note: special character in Café -->
+      <description>Professional-grade espresso machine with built-in grinder. Makes café-quality espresso, cappuccino & lattes at home. Stainless steel construction.</description>
+      <price currency="USD">899.99</price>
+      <stock_quantity>25</stock_quantity>
+      <manufacturer>
+        <name>Caffè Italiano</name>  <!-- Note: special character -->
+        <country>Italy</country>
+        <contact_email>info@caffeitalia.it</contact_email>
+      </manufacturer>
+      <specifications>
+        <spec name="boiler">Dual boiler system</spec>
+        <spec name="pressure">15 bar pump pressure</spec>
+        <spec name="grinder">Conical burr grinder</spec>
+        <spec name="water_capacity">2.5L removable tank</spec>
+        <spec name="power">1400W</spec>
+      </specifications>
+      <certifications>
+        <certification>CE Marked</certification>
+        <certification>Energy Star</certification>
+        <certification>UL Listed</certification>
+      </certifications>
+      <included_accessories>
+        <accessory>Portafilter (58mm)</accessory>
+        <accessory>Tamper</accessory>
+        <accessory>Milk frothing pitcher</accessory>
+        <accessory>Cleaning kit</accessory>
+        <accessory>Water filter</accessory>
+      </included_accessories>
+      <tags>
+        <tag>espresso</tag>
+        <tag>coffee</tag>
+        <tag>professional</tag>
+        <tag>italian</tag>
+      </tags>
+    </product>
+
+  </products>
+  
+  <!-- Warehouse information -->
+  <warehouses>
+    <warehouse id="WH001" name="Main Distribution Center" location="New York, USA">
+      <capacity>50000</capacity>
+      <current_utilization>42500</current_utilization>
+      <contact>
+        <manager>John Smith</manager>
+        <phone>+1-555-0123</phone>
+        <email>john.smith@company.com</email>
+      </contact>
+    </warehouse>
+    <warehouse id="WH002" name="West Coast Facility" location="Los Angeles, USA">
+      <capacity>30000</capacity>
+      <current_utilization>28000</current_utilization>
+      <contact>
+        <manager>Maria Garcia</manager>
+        <phone>+1-555-0456</phone>
+        <email>maria.garcia@company.com</email>
+      </contact>
+    </warehouse>
+    <warehouse id="WH003" name="European Hub" location="Amsterdam, Netherlands">
+      <capacity>40000</capacity>
+      <current_utilization>35000</current_utilization>
+      <contact>
+        <manager>Hans Mueller</manager>
+        <phone>+31-20-555-0789</phone>
+        <email>hans.mueller@company.com</email>
+      </contact>
+    </warehouse>
+  </warehouses>
+
+  <!-- Suppliers information -->
+  <suppliers>
+    <supplier id="SUP001" name="TechComponents Ltd" country="Taiwan">
+      <products>
+        <product_id>1001</product_id>
+        <product_id>1009</product_id>
+        <product_id>1013</product_id>
+      </products>
+      <rating>4.8</rating>
+      <payment_terms>Net 30</payment_terms>
+    </supplier>
+    <supplier id="SUP002" name="Fashion Wholesale Inc" country="Bangladesh">
+      <products>
+        <product_id>1002</product_id>
+        <product_id>1012</product_id>
+      </products>
+      <rating>4.2</rating>
+      <payment_terms>Net 45</payment_terms>
+    </supplier>
+    <!-- Malformed supplier entry - missing closing tag -->
+    <supplier id="SUP003" name="Home Solutions Co" country="China">
+      <products>
+        <product_id>1003</product_id>
+        <product_id>1006</product_id>
+        <product_id>1010</product_id>
+        <product_id>1016</product_id>
+      </products>
+      <rating>3.9</rating>
+      <payment_terms>Net 60</payment_terms>
+    <!-- Missing closing supplier tag -->
+  </suppliers>
+
+</inventory>
