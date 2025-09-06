@@ -1,51 +1,51 @@
-# Part 4: Performance Optimization Challenges
-## 12 High-Performance Data Processing Problems
+# Part 4: 성능 최적화 챌린지
+## 12개의 고성능 데이터 처리 문제
 
-This section focuses on optimizing command-line operations for large datasets, comparing different approaches, and achieving specific performance targets. Problems emphasize real-world scalability challenges.
+이 섹션은 대용량 데이터셋에 대한 명령줄 작업 최적화, 다양한 접근 방식 비교, 특정 성능 목표 달성에 중점을 둡니다. 문제들은 실제 확장성 과제를 강조합니다.
 
-### Learning Objectives
-- Compare performance characteristics of different tools (grep vs awk vs sed)
-- Optimize memory usage for large file processing
-- Implement parallel processing with `parallel` and `xargs -P`
-- Understand stream processing vs in-memory approaches
-- Measure and benchmark command-line operations
-- Handle multi-gigabyte datasets efficiently
+### 학습 목표
+- 다양한 도구의 성능 특성 비교 (grep vs awk vs sed)
+- 대용량 파일 처리를 위한 메모리 사용량 최적화
+- `parallel`과 `xargs -P`를 사용한 병렬 처리 구현
+- 스트림 처리 vs 인-메모리 접근 방식 이해
+- 명령줄 작업 측정 및 벤치마크
+- 멀티 기가바이트 데이터셋 효율적 처리
 
-### Performance Targets
-- **Small files (<10MB):** Focus on correctness and readability
-- **Medium files (10MB-100MB):** Balance performance and memory usage
-- **Large files (100MB-1GB):** Streaming algorithms, memory constraints
-- **Huge files (>1GB):** Parallel processing, disk I/O optimization
+### 성능 목표
+- **작은 파일 (<10MB):** 정확성과 가독성에 중점
+- **중간 파일 (10MB-100MB):** 성능과 메모리 사용량 균형
+- **대용량 파일 (100MB-1GB):** 스트리밍 알고리즘, 메모리 제약
+- **거대한 파일 (>1GB):** 병렬 처리, 디스크 I/O 최적화
 
-### Benchmarking Framework
-All solutions must include performance measurements:
-- **Execution time:** Using `time` command
-- **Memory usage:** Peak RSS via `/usr/bin/time -v`
-- **Disk I/O:** Read/write operations monitoring
-- **CPU usage:** Multi-core utilization assessment
+### 벤치마크 프레임워크
+모든 솔루션에는 성능 측정이 포함되어야 합니다:
+- **실행 시간:** `time` 명령 사용
+- **메모리 사용량:** `/usr/bin/time -v`를 통한 최대 RSS
+- **디스크 I/O:** 읽기/쓰기 작업 모니터링
+- **CPU 사용량:** 멀티코어 활용도 평가
 
 ---
 
-## Problem Index
+## 문제 인덱스
 
-| # | Problem | Target Time | Max Memory | Dataset Size | Focus Area |
-|---|---------|-------------|------------|--------------|------------|
-| 46 | Large File Top-K Analysis | <30s | 100MB | 500MB | Stream processing |
-| 47 | Multi-Tool Performance Comparison | <10s | 50MB | 100MB | Tool selection |
-| 48 | Parallel Log Processing | <60s | 200MB | 1GB | Parallelization |
-| 49 | Memory-Efficient Sorting | <45s | 150MB | 800MB | External sorting |
-| 50 | Real-time Stream Processing | <5s latency | 25MB | Continuous | Low-latency |
-| 51 | Distributed Data Aggregation | <120s | 300MB | 2GB | Map-reduce style |
-| 52 | I/O Optimization Challenge | <20s | 75MB | 400MB | Disk efficiency |
-| 53 | CPU-Intensive Pattern Matching | <90s | 100MB | 1.5GB | Regex optimization |
-| 54 | Network Log Scaling | <15s | 80MB | 300MB | Network data |
-| 55 | Database Export Processing | <40s | 120MB | 600MB | Structured data |
-| 56 | Time Series Analysis | <25s | 90MB | 450MB | Temporal data |
-| 57 | Multi-Format Benchmark Suite | <180s | 400MB | 3GB | Comprehensive test |
+| # | 문제 | 목표 시간 | 최대 메모리 | 데이터셋 크기 | 중점 영역 |
+|---|---------|-------------|------------|-------------------|-----------|
+| 46 | 대용량 파일 Top-K 분석 | <30s | 100MB | 500MB | 스트림 처리 |
+| 47 | 다중 도구 성능 비교 | <10s | 50MB | 100MB | 도구 선택 |
+| 48 | 병렬 로그 처리 | <60s | 200MB | 1GB | 병렬화 |
+| 49 | 메모리 효율적 정렬 | <45s | 150MB | 800MB | 외부 정렬 |
+| 50 | 실시간 스트림 처리 | <5s 레이턴시 | 25MB | 연속 | 낮은 레이턴시 |
+| 51 | 분산 데이터 집계 | <120s | 300MB | 2GB | Map-reduce 스타일 |
+| 52 | I/O 최적화 챌린지 | <20s | 75MB | 400MB | 디스크 효율성 |
+| 53 | CPU 집약적 패턴 매칭 | <90s | 100MB | 1.5GB | 정규표현식 최적화 |
+| 54 | 네트워크 로그 확장 | <15s | 80MB | 300MB | 네트워크 데이터 |
+| 55 | 데이터베이스 익스포트 처리 | <40s | 120MB | 600MB | 구조화된 데이터 |
+| 56 | 시계열 분석 | <25s | 90MB | 450MB | 시간적 데이터 |
+| 57 | 다중 형식 벤치마크 스위트 | <180s | 400MB | 3GB | 종합 테스트 |
 
-## Performance Measurement Tools
+## 성능 측정 도구
 
-### Comprehensive Benchmarking Script
+### 종합 벤치마크 스크립트
 ```bash
 #!/bin/bash
 benchmark_command() {

@@ -1,8 +1,8 @@
-# Problem 70: Brute Force Attack Detection
-**Difficulty:** ★★★ | **Focus:** Login analysis | **File:** `logs/audit.log`
+# 문제 70: 무차별 대입 공격 탐지
+**난이도:** ★★★ | **중점:** 로그인 분석 | **파일:** `logs/audit.log`
 
-## Objective
-Develop a comprehensive brute force attack detection system using command-line tools to identify suspicious login patterns, track attack progression, and generate actionable security alerts.
+## 목표
+명령줄 도구를 사용하여 의심스러운 로그인 패턴을 식별하고, 공격 진행 상황을 추적하며, 실행 가능한 보안 경고를 생성하는 포괄적인 무차별 대입 공격 탐지 시스템을 개발합니다.
 
 ## Problem Statement
 Your organization's audit log contains authentication events from various systems. You need to build an automated detection system that can:

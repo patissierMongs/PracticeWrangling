@@ -1,88 +1,88 @@
-# Enhanced Problem-Based Learning Workbook Request
-## Command-Line Tools, Advanced Regex, and Complex Pipeline Processing
+# 향상된 문제 기반 학습 워크북 요청서
+## 명령줄 도구, 고급 정규표현식, 복잡한 파이프라인 처리
 
-Please generate a comprehensive PBL workbook with **50+ practice problems** focusing on **Data Wrangling, Text Processing, and Advanced Pattern Matching with Command-Line Tools**.
+**명령줄 도구를 이용한 데이터 랭글링, 텍스트 처리, 고급 패턴 매칭**에 중점을 둔 **50개 이상의 실습 문제**를 포함한 포괄적인 PBL 워크북을 생성해 주세요.
 
-### **Target Audience**
-- Intermediate to advanced users seeking mastery of command-line text processing
-- Focus on real-world scenarios requiring complex multi-tool pipelines
-- Emphasis on performance optimization and debugging skills
+### **대상 사용자**
+- 명령줄 텍스트 처리 숙련을 추구하는 중급에서 고급 사용자
+- 복잡한 다중 도구 파이프라인이 필요한 실제 시나리오에 중점
+- 성능 최적화 및 디버깅 기술에 중점
 
-### **Core Requirements**
+### **핵심 요구사항**
 
-#### 1. **Regular Expression Mastery**
-Problems must progressively cover:
-- Basic patterns → Extended regex (ERE) → Perl-compatible regex (PCRE)
-- Advanced patterns: lookahead/lookbehind, non-greedy matching, backreferences
-- Capturing groups and their usage across different tools (grep -P, sed -E, awk)
-- Performance implications of different regex engines
-- At least 15 problems specifically focused on complex regex patterns
+#### 1. **정규표현식 마스터리**
+문제들은 점진적으로 다음 내용을 다루어야 함:
+- 기본 패턴 → 확장 정규식(ERE) → Perl 호환 정규식(PCRE)
+- 고급 패턴: 전방탐색/후방탐색, non-greedy 매칭, 역참조
+- 캡처 그룹과 여러 도구에서의 사용법 (grep -P, sed -E, awk)
+- 서로 다른 regex 엔진의 성능 영향
+- 복잡한 regex 패턴에 특별히 중점을 둔 최소 15개 문제
 
-#### 2. **Complex Pipeline Construction**
-Each section should include problems requiring:
-- Minimum 4-6 command chains for advanced problems
-- Process substitution `<(command)` and command substitution `$(command)`
-- Subshells and their performance implications
-- Error handling in pipelines (set -e, pipefail)
-- Tee for debugging complex pipelines
+#### 2. **복잡한 파이프라인 구축**
+각 섹션은 다음을 요구하는 문제들을 포함해야 함:
+- 고급 문제에 대해 최소 4-6개 명령 체인
+- 프로세스 치환 `<(command)`과 명령 치환 `$(command)`
+- 서브셸과 그 성능 영향
+- 파이프라인에서의 오류 처리 (set -e, pipefail)
+- 복잡한 파이프라인 디버깅을 위한 tee 사용
 
-#### 3. **Performance and Optimization**
-Include scenarios for:
-- Processing multi-GB log files efficiently
-- Comparing performance: `grep` vs `awk` vs `sed` vs `perl`
-- Using `parallel` or `xargs -P` for concurrent processing
-- Memory-efficient stream processing vs loading entire files
+#### 3. **성능 및 최적화**
+다음 시나리오 포함:
+- 멀티 GB 로그 파일의 효율적 처리
+- 성능 비교: `grep` vs `awk` vs `sed` vs `perl`
+- 동시 처리를 위한 `parallel` 또는 `xargs -P` 사용
+- 전체 파일 로딩 대비 메모리 효율적인 스트림 처리
 
-### **Enhanced File Structure**
+### **향상된 파일 구조**
 ```
 pbl-workspace/
 ├── logs/
-│   ├── web_access.log (100MB - realistic size)
-│   ├── web_access_huge.log.gz (1GB compressed)
+│   ├── web_access.log (100MB - 현실적인 크기)
+│   ├── web_access_huge.log.gz (1GB 압축)
 │   ├── system_events.log
-│   ├── application.log (with multi-line stack traces)
-│   ├── audit.log (security events)
-│   └── realtime.log (for tail -f exercises)
+│   ├── application.log (다중 줄 스택 트레이스 포함)
+│   ├── audit.log (보안 이벤트)
+│   └── realtime.log (tail -f 연습용)
 ├── data/
-│   ├── users.csv (10,000 records)
-│   ├── transactions.json (nested JSON structure)
+│   ├── users.csv (10,000개 레코드)
+│   ├── transactions.json (중첩 JSON 구조)
 │   ├── inventory.xml
-│   ├── corrupted_data.txt (intentionally malformed)
-│   └── binary_mixed.dat (mix of text and binary data)
+│   ├── corrupted_data.txt (의도적으로 손상된 데이터)
+│   └── binary_mixed.dat (텍스트와 바이너리 데이터 혼합)
 ├── configs/
 │   ├── nginx.conf
-│   ├── .env (environment variables)
+│   ├── .env (환경 변수)
 │   └── database.ini
 ├── scripts/
-│   └── (empty - for student solutions)
+│   └── (비어있음 - 학생 솔루션용)
 └── performance/
-    └── benchmark.sh (template for performance testing)
+    └── benchmark.sh (성능 테스트 템플릿)
 ```
 
-### **Problem Categories Required**
+### **필수 문제 카테고리**
 
-#### **Part 1: Advanced Regex Patterns (15+ problems)**
-- IP address validation (IPv4 and IPv6)
-- Email extraction with full RFC compliance
-- URL parsing with protocol, domain, path extraction
-- Credit card number detection and masking
-- Log timestamp normalization across different formats
-- Password strength validation
-- Extracting nested parentheses content
-- HTML/XML tag matching (with proper nesting)
-- Phone number formatting (international formats)
-- Complex string replacements with backreferences
+#### **파트 1: 고급 정규표현식 패턴 (15+ 문제)**
+- IP 주소 유효성 검사 (IPv4와 IPv6)
+- RFC 완전 호환 이메일 추출
+- 프로토콜, 도메인, 경로 추출을 포함한 URL 파싱
+- 신용카드 번호 탐지 및 마스킹
+- 다양한 형식의 로그 타임스탬프 정규화
+- 비밀번호 강도 검증
+- 중첩된 괄호 내용 추출
+- 적절한 중첩을 포함한 HTML/XML 태그 매칭
+- 전화번호 형식화 (국제 형식)
+- 역참조를 사용한 복잡한 문자열 치환
 
-#### **Part 2: Multi-Stage Pipeline Processing (15+ problems)**
-Example complexity levels:
+#### **파트 2: 다단계 파이프라인 처리 (15+ 문제)**
+복잡도 수준 예시:
 ```bash
-# Simple (2-3 commands)
+# 단순 (2-3개 명령)
 cat file | grep pattern | wc -l
 
-# Intermediate (4-5 commands)
+# 중급 (4-5개 명령)
 find . -name "*.log" | xargs grep -l ERROR | while read f; do basename $f; done | sort -u
 
-# Advanced (6+ commands with process substitution)
+# 고급 (프로세스 치환을 포함한 6+ 명령)
 comm -12 <(grep -oP '(?<=user=)[^ ]+' auth.log | sort -u) \
          <(awk -F: '$3>=1000 {print $1}' /etc/passwd | sort) | \
     while read user; do
@@ -90,107 +90,107 @@ comm -12 <(grep -oP '(?<=user=)[^ ]+' auth.log | sort -u) \
     done | sort -t: -k2 -rn | head -10
 ```
 
-#### **Part 3: Real-time Monitoring & Alerting (5+ problems)**
-- Using `tail -f` with grep for live filtering
-- `watch` command for periodic monitoring
-- Creating alert conditions with conditional execution
-- Log rotation handling during monitoring
-- Multi-file simultaneous monitoring
+#### **파트 3: 실시간 모니터링 및 알림 (5+ 문제)**
+- 실시간 필터링을 위한 `tail -f`와 grep 사용
+- 주기적 모니터링을 위한 `watch` 명령
+- 조건부 실행을 통한 알림 조건 생성
+- 모니터링 중 로그 로테이션 처리
+- 다중 파일 동시 모니터링
 
-#### **Part 4: Performance Optimization Challenges (10+ problems)**
-- Process a 1GB log file to extract top 100 IPs by request count
-  - Solution 1: Using awk
-  - Solution 2: Using sort/uniq
-  - Solution 3: Using parallel processing
-  - Compare execution times and memory usage
-- Stream processing vs in-memory processing trade-offs
-- Optimal tool selection for different data sizes
+#### **파트 4: 성능 최적화 과제 (10+ 문제)**
+- 1GB 로그 파일을 처리하여 요청 수 기준 상위 100개 IP 추출
+  - 솔루션 1: awk 사용
+  - 솔루션 2: sort/uniq 사용
+  - 솔루션 3: 병렬 처리 사용
+  - 실행 시간과 메모리 사용량 비교
+- 스트림 처리 대비 인메모리 처리 트레이드오프
+- 다양한 데이터 크기에 대한 최적 도구 선택
 
-#### **Part 5: Data Validation & Error Recovery (5+ problems)**
-- Detecting and fixing CSV formatting issues
-- Handling files with mixed encodings
-- Recovering partial data from corrupted logs
-- Validating JSON structure without external tools
-- Binary file detection and text extraction
+#### **파트 5: 데이터 유효성 검사 및 오류 복구 (5+ 문제)**
+- CSV 형식 문제 탐지 및 수정
+- 혼합 인코딩 파일 처리
+- 손상된 로그에서 부분 데이터 복구
+- 외부 도구 없이 JSON 구조 유효성 검사
+- 바이너리 파일 탐지 및 텍스트 추출
 
-#### **Part 6: Advanced AWK Programming (10+ problems)**
-- Multi-file processing with FNR/NR
-- Associative arrays for data aggregation
-- Custom functions in AWK
-- State machines for parsing complex formats
-- AWK as a reporting engine with formatted output
-- Performance comparison: AWK vs Python one-liners
+#### **파트 6: 고급 AWK 프로그래밍 (10+ 문제)**
+- FNR/NR을 사용한 다중 파일 처리
+- 데이터 집계를 위한 연관 배열
+- AWK에서의 사용자 정의 함수
+- 복잡한 형식 파싱을 위한 상태 머신
+- 형식화된 출력을 갖춘 보고 엔진으로서의 AWK
+- 성능 비교: AWK vs Python 원라이너
 
-#### **Part 7: Security & Forensics Scenarios (5+ problems)**
-- Detecting brute force attempts from auth logs
-- Correlation across multiple log sources
-- Extracting IoCs (Indicators of Compromise)
-- Log sanitization for sharing (PII removal)
-- Detecting anomalies in access patterns
+#### **파트 7: 보안 및 포렌식 시나리오 (5+ 문제)**
+- 인증 로그에서 무차별 대입 공격 시도 탐지
+- 다중 로그 소스 간 상관관계 분석
+- IoC(침해 지표) 추출
+- 공유를 위한 로그 정화 (PII 제거)
+- 접근 패턴의 이상 징후 탐지
 
-#### **Part 8: Integration & Automation (10+ problems)**
-- Building a log analysis dashboard with watch and tmux
-- Creating reusable shell functions for common tasks
-- Cron-compatible scripts with proper error handling
-- Generating daily/weekly reports from multiple sources
-- API response processing without jq (using awk/sed)
-- Conditional workflows based on pipeline results
+#### **파트 8: 통합 및 자동화 (10+ 문제)**
+- watch와 tmux를 사용한 로그 분석 대시보드 구축
+- 공통 작업을 위한 재사용 가능한 셸 함수 생성
+- 적절한 오류 처리를 포함한 cron 호환 스크립트
+- 다중 소스에서 일일/주간 보고서 생성
+- jq 없이 API 응답 처리 (awk/sed 사용)
+- 파이프라인 결과에 기반한 조건부 워크플로
 
-### **Specific Technical Requirements**
+### **구체적인 기술 요구사항**
 
-1. **Each problem should specify:**
-   - Expected output format (exact formatting matters)
-   - Performance constraints (if applicable)
-   - Whether regex should be POSIX or PCRE
-   - Edge cases to handle
+1. **각 문제는 다음을 명시해야 함:**
+   - 예상 출력 형식 (정확한 형식이 중요)
+   - 성능 제약 조건 (해당하는 경우)
+   - 정규식이 POSIX인지 PCRE인지
+   - 처리해야 할 엣지 케이스
 
-2. **Progressive difficulty within each section:**
-   - Start with single-tool solutions
-   - Build up to complex pipelines
-   - End with optimization challenges
+2. **각 섹션 내에서의 점진적 난이도:**
+   - 단일 도구 솔루션으로 시작
+   - 복잡한 파이프라인으로 발전
+   - 최적화 과제로 마무리
 
-3. **Include "debug this pipeline" problems:**
-   - Provide broken pipelines for students to fix
-   - Common pitfalls (word splitting, glob expansion, etc.)
+3. **"이 파이프라인을 디버그하세요" 문제 포함:**
+   - 학생들이 수정할 수 있도록 손상된 파이프라인 제공
+   - 일반적인 함정 (단어 분할, glob 확장 등)
 
-4. **Real-world data characteristics:**
-   - Inconsistent formatting
-   - Missing fields
-   - Special characters and Unicode
-   - Mixed line endings (CRLF vs LF)
+4. **실제 데이터 특성:**
+   - 일관성 없는 형식
+   - 누락된 필드
+   - 특수 문자와 유니코드
+   - 혼합 줄 끝 (CRLF vs LF)
 
-5. **Testing & Validation:**
-   - Each solution should be verifiable with provided test cases
-   - Include edge cases in test data
-   - Performance benchmarks for optimization problems
+5. **테스트 및 검증:**
+   - 각 솔루션은 제공된 테스트 케이스로 검증 가능해야 함
+   - 테스트 데이터에 엣지 케이스 포함
+   - 최적화 문제에 대한 성능 벤치마크
 
-### **Sample Advanced Problems**
+### **고급 문제 샘플**
 
-1. **Complex Regex Challenge:**
-   "Extract all SQL queries from application.log, including multi-line queries, handling both single and double quotes correctly, and output them numbered with their timestamp."
+1. **복잡한 정규식 과제:**
+   "application.log에서 다중 줄 쿼리를 포함한 모든 SQL 쿼리를 추출하고, 단일 및 이중 따옴표를 모두 올바르게 처리하여 타임스탬프와 함께 번호를 매겨 출력하세요."
 
-2. **Pipeline Optimization:**
-   "Process web_access_huge.log.gz to find the top 10 API endpoints by total response time, but the solution must run in under 30 seconds and use less than 100MB of RAM."
+2. **파이프라인 최적화:**
+   "web_access_huge.log.gz를 처리하여 총 응답 시간별 상위 10개 API 엔드포인트를 찾되, 솔루션은 30초 이내에 실행되고 100MB 미만의 RAM을 사용해야 합니다."
 
-3. **Real-time Correlation:**
-   "Monitor realtime.log for failed login attempts. When 5 failures occur from the same IP within 60 seconds, extract all activity from that IP across all log files in the last hour."
+3. **실시간 상관관계:**
+   "realtime.log에서 실패한 로그인 시도를 모니터링하세요. 동일한 IP에서 60초 이내에 5번의 실패가 발생하면, 지난 한 시간 동안 모든 로그 파일에서 해당 IP의 모든 활동을 추출하세요."
 
-4. **Data Recovery:**
-   "The corrupted_data.txt file has damaged CSV records. Recover as much valid data as possible, report the number of corrupted lines, and produce a clean CSV with a recovery report."
+4. **데이터 복구:**
+   "corrupted_data.txt 파일에 손상된 CSV 레코드가 있습니다. 가능한 한 많은 유효한 데이터를 복구하고, 손상된 줄의 수를 보고하며, 복구 보고서와 함께 깨끗한 CSV를 생성하세요."
 
-### **Expected Deliverables**
-- Complete problem statements with clear success criteria
-- Sample input data with edge cases
-- Reference solutions showcasing multiple approaches
-- Performance benchmarks for each solution
-- Explanation of trade-offs between different approaches
-- Debugging tips for common mistakes
+### **예상 결과물**
+- 명확한 성공 기준을 포함한 완전한 문제 설명
+- 엣지 케이스를 포함한 샘플 입력 데이터
+- 다양한 접근 방식을 보여주는 참조 솔루션
+- 각 솔루션에 대한 성능 벤치마크
+- 다양한 접근 방식 간의 트레이드오프 설명
+- 일반적인 실수에 대한 디버깅 팁
 
-### **Additional Resources to Include**
-- Regex cheat sheet comparing grep, sed, awk, and perl
-- Performance comparison matrix for common operations
-- Pipeline debugging techniques guide
-- Best practices for production log processing
-- Common anti-patterns to avoid
+### **포함할 추가 리소스**
+- grep, sed, awk, perl을 비교하는 정규식 치트시트
+- 일반적인 작업에 대한 성능 비교 매트릭스
+- 파이프라인 디버깅 기법 가이드
+- 프로덕션 로그 처리 모범 사례
+- 피해야 할 일반적인 안티 패턴
 
-This enhanced course should prepare students for real-world command-line text processing challenges they'll encounter in DevOps, security analysis, and data engineering roles.
+이 향상된 과정은 학생들이 DevOps, 보안 분석, 데이터 엔지니어링 역할에서 마주치게 될 실제 명령줄 텍스트 처리 과제에 대비할 수 있도록 해야 합니다.

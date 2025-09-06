@@ -1,5 +1,5 @@
-# Problem 46: Large File Top-K Analysis
-**Difficulty:** ★★★ | **Target Time:** <30s | **Max Memory:** 100MB | **Dataset:** 500MB
+# 문제 46: 대용량 파일 Top-K 분석
+**난이도:** ★★★ | **목표 시간:** <30s | **최대 메모리:** 100MB | **데이터셋:** 500MB
 
 ## Objective
 Process a large web access log to find the top 100 IP addresses by request count, optimizing for both speed and memory usage with multiple algorithmic approaches.

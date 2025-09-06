@@ -1,81 +1,81 @@
-# Command-Line Performance Optimization Guide
+# 명령줄 성능 최적화 가이드
 
-This guide provides systematic approaches to optimizing command-line data processing operations, with benchmarking methodologies and real-world optimization techniques.
+이 가이드는 벤치마킹 방법론과 실제 최적화 기법을 통해 명령줄 데이터 처리 작업을 최적화하는 체계적인 접근 방법을 제공합니다.
 
 ---
 
-## Performance Hierarchy
+## 성능 계층구조
 
-### Tool Speed Rankings (Typical Use Cases)
+### 도구 속도 순위 (일반적인 사용 사례)
 
-1. **Built-in shell operations** - Fastest
-   - Variable manipulation, arithmetic
-   - File redirection, simple loops
+1. **내장 셸 연산** - 가장 빠름
+   - 변수 조작, 산술 연산
+   - 파일 리디렉션, 단순 루프
 
-2. **C-based utilities** - Very Fast  
+2. **C 기반 유틸리티** - 매우 빠름  
    - `grep`, `sort`, `cut`, `wc`
-   - Optimized for specific tasks
+   - 특정 작업에 최적화됨
 
-3. **AWK** - Fast to Medium
-   - Excellent for field processing
-   - Good balance of speed and flexibility
+3. **AWK** - 빠름에서 보통
+   - 필드 처리에 뛰어남
+   - 속도와 유연성의 좋은 균형
 
-4. **sed** - Fast to Medium
-   - Stream editing operations
-   - Simple text transformations
+4. **sed** - 빠름에서 보통
+   - 스트림 편집 작업
+   - 단순한 텍스트 변환
 
-5. **Perl one-liners** - Medium
-   - Complex text processing
-   - Advanced regex features
+5. **Perl 원라이너** - 보통
+   - 복잡한 텍스트 처리
+   - 고급 정규식 기능
 
-6. **Python/Ruby scripts** - Slower
-   - Full programming features
-   - Heavy startup overhead
+6. **Python/Ruby 스크립트** - 느림
+   - 완전한 프로그래밍 기능
+   - 높은 시작 오버헤드
 
 ---
 
-## Memory Optimization Strategies
+## 메모리 최적화 전략
 
-### 1. Stream Processing vs. Loading
+### 1. 스트림 처리 vs. 로딩
 ```bash
-# Memory-efficient (streaming)
+# 메모리 효율적 (스트리밍)
 < large_file.log grep pattern | sort | head -10
 
-# Memory-intensive (loading entire file)
-sort large_file.log | head -10  # Loads everything into memory
+# 메모리 집약적 (전체 파일 로딩)
+sort large_file.log | head -10  # 모든 것을 메모리에 로드
 
-# AWK streaming approach
-awk '/pattern/ {print $1}' large_file.log  # Processes line by line
+# AWK 스트리밍 접근법
+awk '/pattern/ {print $1}' large_file.log  # 한 줄씩 처리
 
-# AWK memory-intensive approach  
+# AWK 메모리 집약적 접근법  
 awk '{lines[NR] = $0} END {for(i=1; i<=NR; i++) print lines[i]}' large_file.log
 ```
 
-### 2. External Sorting for Large Datasets
+### 2. 대용량 데이터셋을 위한 외부 정렬
 ```bash
-# Limit memory usage for sort
-sort -S 100M large_file.txt        # Use only 100MB
-sort --parallel=4 large_file.txt    # Use 4 CPU cores
-sort -T /tmp large_file.txt         # Use /tmp for temporary files
+# 정렬을 위한 메모리 사용량 제한
+sort -S 100M large_file.txt        # 100MB만 사용
+sort --parallel=4 large_file.txt    # 4개 CPU 코어 사용
+sort -T /tmp large_file.txt         # 임시 파일에 /tmp 사용
 
-# Use faster temporary storage
-export TMPDIR=/dev/shm              # RAM disk for temp files
+# 더 빠른 임시 저장소 사용
+export TMPDIR=/dev/shm              # 임시 파일을 위한 RAM 디스크
 sort large_file.txt
 ```
 
-### 3. Efficient Data Structures
+### 3. 효율적인 데이터 구조
 ```bash
-# AWK: Use appropriate data structures
+# AWK: 적절한 데이터 구조 사용
 awk '
 {
-    # Efficient: Direct array access
+    # 효율적: 직접 배열 액세스
     count[$1]++
 }
 END {
     for (key in count) print key, count[key]
 }' data.txt
 
-# Less efficient: String concatenation
+# 덜 효율적: 문자열 연결
 awk '
 {
     output = output $1 "\n"
@@ -87,34 +87,34 @@ END {
 
 ---
 
-## CPU Optimization
+## CPU 최적화
 
-### 1. Parallelization Strategies
+### 1. 병렬화 전략
 
 #### GNU Parallel
 ```bash
-# Process files in parallel
+# 파일을 병렬로 처리
 find . -name "*.log" | parallel -j+0 'grep ERROR {}'
 
-# Parallel processing with load balancing
+# 로드 밸런싱과 함께 병렬 처리
 parallel -j+0 --load 80% command ::: input1 input2 input3
 
-# Distribute work across cores
+# 코어 간 작업 분산
 seq 1 1000000 | parallel -j+0 --pipe 'wc -l'
 ```
 
-#### xargs with Parallelization
+#### 병렬화를 통한 xargs
 ```bash
-# Process multiple files simultaneously
-ls *.log | xargs -n1 -P4 grep "ERROR"  # 4 parallel processes
+# 여러 파일을 동시에 처리
+ls *.log | xargs -n1 -P4 grep "ERROR"  # 4개의 병렬 프로세스
 
-# Dynamic process count
+# 동적 프로세스 수
 ls *.log | xargs -n1 -P$(nproc) process_file
 ```
 
-#### Manual Pipeline Parallelization
+#### 수동 파이프라인 병렬화
 ```bash
-# Split work across multiple background processes
+# 여러 백그라운드 프로세스로 작업 분할
 {
     grep "pattern1" large_file.log > /tmp/result1 &
     grep "pattern2" large_file.log > /tmp/result2 &
@@ -124,156 +124,156 @@ ls *.log | xargs -n1 -P$(nproc) process_file
 }
 ```
 
-### 2. Efficient Pattern Matching
+### 2. 효율적인 패턴 매칭
 
-#### Choose the Right Tool for the Pattern
+#### 패턴에 적합한 도구 선택
 ```bash
-# Simple literal string: Use grep
+# 단순 리터럴 문자열: grep 사용
 grep "literal string" file.txt
 
-# Multiple literal strings: Use grep with -F
+# 여러 리터럴 문자열: -F 옵션과 함께 grep 사용
 grep -F -f patterns.txt file.txt
 
-# Field-based processing: Use awk
+# 필드 기반 처리: awk 사용
 awk '$3 == "value"' file.txt
 
-# Complex regex: Consider tool carefully
-grep -P 'complex(?=pattern)' file.txt  # PCRE features
-grep -E 'simpler|pattern' file.txt     # Faster ERE
+# 복잡한 정규식: 도구를 신중하게 선택
+grep -P 'complex(?=pattern)' file.txt  # PCRE 기능
+grep -E 'simpler|pattern' file.txt     # 더 빠른 ERE
 ```
 
-#### Optimize Regex Patterns
+#### 정규식 패턴 최적화
 ```bash
-# Anchor patterns when possible
-grep '^ERROR' file.txt      # Faster: anchored to start
-grep 'ERROR.*critical' file.txt  # Slower: searches entire line
+# 가능할 때 패턴 고정
+grep '^ERROR' file.txt      # 더 빠름: 시작 지점에 고정
+grep 'ERROR.*critical' file.txt  # 더 느림: 전체 라인 검색
 
-# Use character classes efficiently  
-grep '[0-9]' file.txt       # Faster: character class
-grep '0|1|2|3|4|5|6|7|8|9' file.txt  # Slower: alternation
+# 문자 클래스를 효율적으로 사용  
+grep '[0-9]' file.txt       # 더 빠름: 문자 클래스
+grep '0|1|2|3|4|5|6|7|8|9' file.txt  # 더 느림: 교대
 
-# Order alternation by frequency
-grep 'common|rare|very_rare' file.txt  # Put most common first
+# 빈도순으로 교대 정렬
+grep 'common|rare|very_rare' file.txt  # 가장 일반적인 것을 먼저 배치
 ```
 
 ---
 
-## I/O Optimization
+## I/O 최적화
 
-### 1. Minimize Disk Operations
+### 1. 디스크 작업 최소화
 ```bash
-# Bad: Multiple file reads
+# 나쁨: 여러 번 파일 읽기
 grep "pattern1" file.txt
 grep "pattern2" file.txt  
 grep "pattern3" file.txt
 
-# Better: Single pass with multiple patterns
+# 더 좋음: 여러 패턴으로 단일 패스
 egrep "pattern1|pattern2|pattern3" file.txt
 
-# Best: Process once, filter multiple times
+# 최고: 한 번 처리, 여러 번 필터링
 < file.txt tee >(grep "pattern1" > result1) \
               >(grep "pattern2" > result2) \
               >(grep "pattern3" > result3) >/dev/null
 ```
 
-### 2. Efficient Pipeline Construction
+### 2. 효율적인 파이프라인 구성
 ```bash
-# Minimize intermediate steps
-# Bad: Multiple intermediate files
+# 중간 단계 최소화
+# 나쁨: 여러 중간 파일
 grep pattern file.txt > temp1
 sort temp1 > temp2
 uniq temp2 > result
 rm temp1 temp2
 
-# Good: Pipeline processing
+# 좋음: 파이프라인 처리
 grep pattern file.txt | sort | uniq > result
 
-# Better: Minimize process creation
+# 더 좋음: 프로세스 생성 최소화
 awk '/pattern/ {print $0}' file.txt | sort -u > result
 ```
 
-### 3. Buffer Size Optimization
+### 3. 버퍼 크기 최적화
 ```bash
-# Adjust buffer sizes for better I/O
-stdbuf -oL -eL command    # Line buffering
-stdbuf -o0 -e0 command    # Unbuffered (for real-time)
-stdbuf -o4K -e4K command  # 4KB buffer
+# 더 나은 I/O를 위한 버퍼 크기 조정
+stdbuf -oL -eL command    # 라인 버퍼링
+stdbuf -o0 -e0 command    # 버퍼링 없음 (실시간용)
+stdbuf -o4K -e4K command  # 4KB 버퍼
 
-# Use larger buffers for batch processing
-dd if=input of=output bs=1M  # 1MB blocks instead of default 512B
+# 배치 처리에 더 큰 버퍼 사용
+dd if=input of=output bs=1M  # 기본 512B 대신 1MB 블록
 ```
 
 ---
 
-## Tool-Specific Optimizations
+## 도구별 최적화
 
-### grep Optimizations
+### grep 최적화
 ```bash
-# Use fixed strings for literal matches
+# 리터럴 매칭에 고정 문자열 사용
 grep -F "literal string" file.txt
 
-# Use multiple patterns efficiently
+# 여러 패턴을 효율적으로 사용
 grep -f patterns.txt file.txt
 
-# Limit output when you only need to know if pattern exists
+# 패턴 존재 여부만 알면 될 때 출력 제한
 grep -q pattern file.txt && echo "found"
 
-# Use appropriate regex engine
-grep pattern file.txt          # BRE (fastest)
-grep -E pattern file.txt       # ERE (good balance)
-grep -P pattern file.txt       # PCRE (powerful but slower)
+# 적절한 정규식 엔진 사용
+grep pattern file.txt          # BRE (가장 빠름)
+grep -E pattern file.txt       # ERE (좋은 균형)
+grep -P pattern file.txt       # PCRE (강력하지만 느림)
 ```
 
-### awk Optimizations
+### awk 최적화
 ```bash
-# Use field comparison instead of regex when possible
-awk '$1 == "value"' file.txt       # Faster: exact comparison
-awk '$1 ~ /^value$/' file.txt      # Slower: regex
+# 가능하면 정규식 대신 필드 비교 사용
+awk '$1 == "value"' file.txt       # 더 빠름: 정확한 비교
+awk '$1 ~ /^value$/' file.txt      # 더 느림: 정규식
 
-# Minimize regex compilation
+# 정규식 컴파일 최소화
 awk 'BEGIN{pattern="regex"} $0 ~ pattern' file.txt
 
-# Use appropriate data structures
-awk '{sum += $1} END {print sum}' file.txt  # Simple accumulation
-awk '{values[NR] = $1} END {for(i=1; i<=NR; i++) sum += values[i]; print sum}' file.txt  # Unnecessary array
+# 적절한 데이터 구조 사용
+awk '{sum += $1} END {print sum}' file.txt  # 단순 누적
+awk '{values[NR] = $1} END {for(i=1; i<=NR; i++) sum += values[i]; print sum}' file.txt  # 불필요한 배열
 ```
 
-### sort Optimizations
+### sort 최적화
 ```bash
-# Specify sort type for better performance
-sort -n numbers.txt           # Numeric sort
-sort -g floating_numbers.txt  # General numeric sort
-sort -h human_readable.txt    # Human readable numbers (1K, 2M, etc.)
+# 더 나은 성능을 위한 정렬 타입 지정
+sort -n numbers.txt           # 숫자 정렬
+sort -g floating_numbers.txt  # 일반 숫자 정렬
+sort -h human_readable.txt    # 인간이 읽을 수 있는 숫자 (1K, 2M 등)
 
-# Use appropriate memory limits
-sort -S 1G large_file.txt     # Use 1GB of RAM
+# 적절한 메모리 제한 사용
+sort -S 1G large_file.txt     # 1GB RAM 사용
 
-# Sort only what you need
-sort -k2,2n file.txt         # Sort only by second field (numeric)
-sort -u file.txt             # Sort and unique in one pass
+# 필요한 것만 정렬
+sort -k2,2n file.txt         # 두 번째 필드로만 정렬 (숫자)
+sort -u file.txt             # 한 번에 정렬과 고유 처리
 ```
 
 ---
 
-## Benchmarking Methodology
+## 벤치마킹 방법론
 
-### 1. Comprehensive Timing
+### 1. 종합 시간 측정
 ```bash
-# Basic timing
+# 기본 시간 측정
 time command
 
-# Detailed timing with resource usage
+# 리소스 사용량을 포함한 상세 시간 측정
 /usr/bin/time -v command
 
-# Multiple runs for average
+# 평균을 위한 여러 번 실행
 for i in {1..5}; do
     /usr/bin/time -f "%e %M" command 2>&1
 done | awk '{time+=$1; mem+=$2} END {print "Avg time:", time/NR, "Avg memory:", mem/NR}'
 ```
 
-### 2. Memory Monitoring
+### 2. 메모리 모니터링
 ```bash
-# Monitor memory usage during execution
+# 실행 중 메모리 사용량 모니터링
 monitor_memory() {
     local pid=$1
     local interval=${2:-1}
@@ -283,59 +283,59 @@ monitor_memory() {
     done
 }
 
-# Usage
+# 사용법
 long_running_command &
 PID=$!
 monitor_memory $PID > memory_usage.log
 wait $PID
 ```
 
-### 3. I/O Monitoring
+### 3. I/O 모니터링
 ```bash
-# Monitor I/O operations (Linux)
+# I/O 작업 모니터링 (Linux)
 iostat -x 1 &
 IOSTAT_PID=$!
 command
 kill $IOSTAT_PID
 
-# Monitor with iotop (if available)
+# iotop으로 모니터링 (사용 가능한 경우)
 iotop -aoP -d1 &
 IOTOP_PID=$!
 command  
 kill $IOTOP_PID
 ```
 
-### 4. CPU Utilization
+### 4. CPU 사용률
 ```bash
-# Monitor CPU usage
+# CPU 사용률 모니터링
 top -b -n1 -p PID | tail -n +8
 
-# Use htop for better visualization (if available)
+# 더 나은 시각화를 위해 htop 사용 (사용 가능한 경우)
 htop -p PID
 ```
 
 ---
 
-## Performance Testing Framework
+## 성능 테스트 프레임워크
 
-### Test Environment Setup
+### 테스트 환경 설정
 ```bash
 #!/bin/bash
 # performance_test.sh
 
 setup_test_env() {
-    # Create consistent test environment
-    sync && echo 3 > /proc/sys/vm/drop_caches  # Clear caches
+    # 일관된 테스트 환경 생성
+    sync && echo 3 > /proc/sys/vm/drop_caches  # 캐시 지우기
     
-    # Set CPU governor for consistent performance
+    # 일관된 성능을 위한 CPU 거버너 설정
     echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
     
-    # Disable swap for memory tests
+    # 메모리 테스트를 위해 스왈 비활성화
     sudo swapoff -a
 }
 
 cleanup_test_env() {
-    # Restore system state
+    # 시스템 상태 복원
     echo ondemand | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
     sudo swapon -a
 }
@@ -379,7 +379,7 @@ benchmark_command() {
 }
 ```
 
-### Sample Benchmark Script
+### 샘플 벤치마크 스크립트
 ```bash
 #!/bin/bash
 # compare_tools.sh - Compare different tools for same task
@@ -418,14 +418,14 @@ main "$@"
 
 ---
 
-## Real-World Optimization Examples
+## 실제 최적화 예시
 
-### Example 1: Log Analysis Optimization
+### 예시 1: 로그 분석 최적화
 ```bash
-# Slow approach
+# 느린 접근법
 grep "ERROR" huge.log | grep "database" | awk '{print $1, $2}' | sort | uniq
 
-# Optimized approach
+# 최적화된 접근법
 awk '/ERROR.*database/ {print $1, $2}' huge.log | sort -u
 
 # Further optimization for repeated analysis
@@ -441,19 +441,19 @@ END {
 }' huge.log | sort
 ```
 
-### Example 2: Large File Processing
+### 예시 2: 대용량 파일 처리
 ```bash
-# Memory-intensive approach
+# 메모리 집약적 접근법
 awk '{lines[NR] = $0} END {for(i=1; i<=NR; i++) if(lines[i] ~ /pattern/) print lines[i]}' huge_file.txt
 
-# Memory-efficient approach
+# 메모리 효율적 접근법
 awk '/pattern/ {print}' huge_file.txt
 
-# Parallel processing for multiple patterns
+# 여러 패턴에 대한 병렬 처리
 parallel -j+0 "grep {} huge_file.txt" ::: pattern1 pattern2 pattern3
 ```
 
-### Example 3: Data Aggregation
+### 예시 3: 데이터 집계
 ```bash
 # Slow: Multiple file passes
 for field in field1 field2 field3; do
@@ -474,34 +474,34 @@ END {
 
 ---
 
-## Troubleshooting Performance Issues
+## 성능 문제 해결
 
-### Common Performance Problems
+### 일반적인 성능 문제
 
-1. **Memory Exhaustion**
-   - Symptom: Process killed or system becomes unresponsive
-   - Solution: Use streaming approaches, external sorting, or process in chunks
+1. **메모리 고갈**
+   - 증상: 프로세스 종료 또는 시스템 무반응
+   - 해결책: 스트리밍 접근법, 외부 정렬, 또는 청크 단위 처리 사용
 
-2. **CPU Bottlenecks**
-   - Symptom: High CPU usage, slow processing
-   - Solution: Optimize regex patterns, use simpler tools, parallelize work
+2. **CPU 병목**
+   - 증상: 높은 CPU 사용률, 느린 처리
+   - 해결책: 정규식 패턴 최적화, 더 단순한 도구 사용, 작업 병렬화
 
-3. **I/O Bottlenecks**
-   - Symptom: High I/O wait times
-   - Solution: Minimize file operations, use faster storage, optimize access patterns
+3. **I/O 병목**
+   - 증상: 높은 I/O 대기 시간
+   - 해결책: 파일 작업 최소화, 더 빠른 저장소 사용, 액세스 패턴 최적화
 
-4. **Inefficient Algorithms**
-   - Symptom: Processing time grows exponentially with data size
-   - Solution: Use better algorithms, appropriate tools, or parallel processing
+4. **비효율적인 알고리즘**
+   - 증상: 데이터 크기에 따른 처리 시간 지수적 증가
+   - 해결책: 더 나은 알고리즘, 적절한 도구, 또는 병렬 처리 사용
 
-### Performance Profiling Tools
+### 성능 프로파일링 도구
 ```bash
-# System-wide monitoring
+# 시스템 전체 모니터링
 htop, top, iotop, iostat, vmstat
 
-# Process-specific profiling
-strace command           # System call tracing
-ltrace command          # Library call tracing  
-perf record command     # CPU profiling
-valgrind command        # Memory profiling
+# 프로세스별 프로파일링
+strace command           # 시스템 호출 추적
+ltrace command          # 라이브러리 호출 추적  
+perf record command     # CPU 프로파일링
+valgrind command        # 메모리 프로파일링
 ```

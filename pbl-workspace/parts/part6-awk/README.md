@@ -1,80 +1,80 @@
-# Part 6: Advanced AWK Programming
-## 12 Expert AWK Programming Challenges
+# Part 6: 고급 AWK 프로그래밍
+## 12개의 전문가 AWK 프로그래밍 챌린지
 
-This section explores AWK's full potential as a programming language, covering advanced features like associative arrays, custom functions, state machines, and multi-file processing. Problems emphasize AWK's unique strengths in data processing and report generation.
+이 섹션은 프로그래밍 언어로서 AWK의 전체 잠재력을 탐구하며, 연관 배열, 사용자 정의 함수, 상태 머신, 다중 파일 처리와 같은 고급 기능을 다룹니다. 문제들은 데이터 처리와 리포트 생성에서 AWK의 고유한 강점을 강조합니다.
 
-### Learning Objectives
-- Master AWK's associative arrays and data structures
-- Implement custom functions and complex logic
-- Handle multi-file processing with FNR/NR
-- Build state machines for parsing complex formats
-- Create professional reporting engines
-- Compare AWK performance against other tools
-- Understand AWK's role in modern data processing
+### 학습 목표
+- AWK의 연관 배열과 데이터 구조 마스터하기
+- 사용자 정의 함수와 복잡한 로직 구현하기
+- FNR/NR을 사용한 다중 파일 처리 처리하기
+- 복잡한 형식 파싱을 위한 상태 머신 구축하기
+- 전문가 수준의 리포트 엔진 만들기
+- 다른 도구들과 AWK 성능 비교하기
+- 현대 데이터 처리에서 AWK의 역할 이해하기
 
-### Advanced AWK Features Covered
-- **Associative Arrays:** Complex data aggregation and lookup
-- **Built-in Functions:** String, math, and I/O functions
-- **Custom Functions:** User-defined reusable code blocks
-- **Pattern-Action Programming:** Advanced pattern matching
-- **Multi-file Processing:** FNR vs NR, FILENAME variable
-- **State Machines:** Parsing structured text formats
-- **Report Generation:** Professional formatted output
+### 다룹되는 고급 AWK 기능
+- **연관 배열:** 복잡한 데이터 집계 및 룩업
+- **내장 함수:** 문자열, 수학, I/O 함수
+- **사용자 정의 함수:** 사용자 정의 재사용 가능한 코드 블록
+- **패턴-액션 프로그래밍:** 고급 패턴 매칭
+- **다중 파일 처리:** FNR vs NR, FILENAME 변수
+- **상태 머신:** 구조화된 텍스트 형식 파싱
+- **리포트 생성:** 전문가 수준의 형식화된 출력
 
 ---
 
-## Problem Index
+## 문제 인덱스
 
-| # | Problem | Difficulty | Focus Area | Files Used |
-|---|---------|------------|------------|------------|
-| 58 | Multi-File Data Aggregation | ★★★ | FNR/NR, Arrays | logs/*.log |
-| 59 | Custom Function Library | ★★★ | Functions, Modularity | Multiple files |
-| 60 | State Machine Log Parser | ★★★★ | State machines | logs/application.log |
-| 61 | Advanced Reporting Engine | ★★★★ | Formatting, Output | All data files |
-| 62 | Associative Array Mastery | ★★★ | Complex data structures | data/*.csv |
-| 63 | Real-time AWK Dashboard | ★★★★ | Continuous processing | logs/realtime.log |
-| 64 | Complex Join Operations | ★★★ | Multi-file correlation | data/*.csv |
-| 65 | AWK vs Python Performance | ★★★ | Benchmarking | Large datasets |
-| 66 | Configuration Parser | ★★★★ | Structured parsing | configs/*.conf |
-| 67 | Data Transformation Engine | ★★★★ | Format conversion | Multiple formats |
-| 68 | Statistical Analysis Suite | ★★★★ | Math functions | data/*.csv |
-| 69 | AWK Web Log Analyzer | ★★★★★ | Complete application | logs/web_access.log |
+| # | 문제 | 난이도 | 중점 영역 | 사용된 파일 |
+|---|---------|----------|----------|-------------|
+| 58 | 다중 파일 데이터 집계 | ★★★ | FNR/NR, 배열 | logs/*.log |
+| 59 | 사용자 정의 함수 라이브러리 | ★★★ | 함수, 모듈화 | Multiple files |
+| 60 | 상태 머신 로그 파서 | ★★★★ | 상태 머신 | logs/application.log |
+| 61 | 고급 리포트 엔진 | ★★★★ | 포매팅, 출력 | All data files |
+| 62 | 연관 배열 마스터리 | ★★★ | 복잡한 데이터 구조 | data/*.csv |
+| 63 | 실시간 AWK 대시보드 | ★★★★ | 지속적 처리 | logs/realtime.log |
+| 64 | 복잡한 조인 연산 | ★★★ | 다중 파일 상관관계 | data/*.csv |
+| 65 | AWK vs Python 성능 | ★★★ | 벤치마크 | Large datasets |
+| 66 | 설정 파서 | ★★★★ | 구조화된 파싱 | configs/*.conf |
+| 67 | 데이터 변환 엔진 | ★★★★ | 형식 변환 | Multiple formats |
+| 68 | 통계 분석 스위트 | ★★★★ | 수학 함수 | data/*.csv |
+| 69 | AWK 웹 로그 분석기 | ★★★★★ | 완전한 애플리케이션 | logs/web_access.log |
 
-**Difficulty Legend:**
-- ★★★ = Advanced (complex arrays, functions)
-- ★★★★ = Expert (state machines, complex logic)
-- ★★★★★ = Master (complete applications)
+**난이도 범례:**
+- ★★★ = 고급 (복잡한 배열, 함수)
+- ★★★★ = 전문가 (상태 머신, 복잡한 로직)
+- ★★★★★ = 마스터 (완전한 애플리케이션)
 
-## Advanced AWK Programming Patterns
+## 고급 AWK 프로그래밍 패턴
 
-### 1. Associative Arrays for Data Processing
+### 1. 데이터 처리를 위한 연관 배열
 ```awk
-# Multi-dimensional arrays
+# 다차원 배열
 user_activity[user][date][action] = count
 
-# Array of arrays pattern
+# 배열의 배열 패턴
 split(line, fields, ",")
 for (i = 1; i <= length(fields); i++) {
     data[NR][i] = fields[i]
 }
 
-# Sorted array processing (GNU AWK)
+# 정렬된 배열 처리 (GNU AWK)
 PROCINFO["sorted_in"] = "@ind_str_asc"
 for (key in array) {
-    # Process in sorted order
+    # 정렬된 순서로 처리
 }
 ```
 
-### 2. Custom Function Examples
+### 2. 사용자 정의 함수 예제
 ```awk
-# Date manipulation function
+# 날짜 조작 함수
 function date_to_epoch(date_str) {
-    # Convert YYYY-MM-DD to epoch time
+    # YYYY-MM-DD를 에포크 시간으로 변환
     split(date_str, parts, "-")
     return mktime(parts[1] " " parts[2] " " parts[3] " 0 0 0")
 }
 
-# Advanced string processing
+# 고급 문자열 처리
 function extract_domain(email) {
     if (match(email, /@([^@]+)$/, domain)) {
         return domain[1]
@@ -82,7 +82,7 @@ function extract_domain(email) {
     return ""
 }
 
-# Statistical functions
+# 통계 함수
 function mean(array, size) {
     sum = 0
     for (i = 1; i <= size; i++) {
@@ -92,9 +92,9 @@ function mean(array, size) {
 }
 ```
 
-### 3. State Machine Implementation
+### 3. 상태 머신 구현
 ```awk
-# Multi-line log entry parser
+# 다중 라인 로그 항목 파서
 state == "READING_STACKTRACE" && /^[[:space:]]/ {
     stacktrace[current_error] = stacktrace[current_error] "\n" $0
     next
@@ -112,43 +112,43 @@ state == "READING_STACKTRACE" && /^[[:space:]]/ {
 }
 ```
 
-### 4. Multi-File Processing Patterns
+### 4. 다중 파일 처리 패턴
 ```awk
-# Process different files differently based on FILENAME
+# FILENAME에 기반하여 다른 파일을 다르게 처리
 FILENAME ~ /\.log$/ {
-    # Process log files
+    # 로그 파일 처리
     log_entries[FNR] = $0
 }
 
 FILENAME ~ /\.csv$/ {
-    # Process CSV files
+    # CSV 파일 처리
     if (FNR == 1) {
-        # Header row
+        # 헤더 행
         for (i = 1; i <= NF; i++) {
             headers[FILENAME][i] = $i
         }
     } else {
-        # Data rows
+        # 데이터 행
         for (i = 1; i <= NF; i++) {
             data[FILENAME][FNR][i] = $i
         }
     }
 }
 
-# Cross-file correlation in END block
+# END 블록에서 파일 간 상관관계
 END {
-    # Correlate data from different files
+    # 다른 파일의 데이터와 상관관계 분석
     for (log_line in log_entries) {
-        # Match with CSV data
+        # CSV 데이터와 매치
     }
 }
 ```
 
-## Professional AWK Development Practices
+## 전문가 수준 AWK 개발 관행
 
-### 1. Modular AWK Programming
+### 1. 모듈화 AWK 프로그래밍
 ```awk
-# lib/common.awk - Shared functions
+# lib/common.awk - 공유 함수
 function debug(msg) {
     if (DEBUG) print "DEBUG:", msg > "/dev/stderr"
 }
@@ -157,7 +157,7 @@ function format_number(num, decimals) {
     return sprintf("%." decimals "f", num)
 }
 
-# main.awk - Main program
+# main.awk - 메인 프로그램
 @include "lib/common.awk"
 
 BEGIN {
@@ -166,93 +166,93 @@ BEGIN {
 
 {
     debug("Processing line: " NR)
-    # Main processing logic
+    # 메인 처리 로직
 }
 ```
 
-### 2. Error Handling and Validation
+### 2. 오류 처리 및 검증
 ```awk
-# Input validation
+# 입력 검증
 NF < expected_fields {
     print "ERROR: Line " NR " has insufficient fields" > "/dev/stderr"
     errors++
     next
 }
 
-# Numeric validation
+# 숫자 검증
 function is_numeric(value) {
     return (value ~ /^[+-]?[0-9]*\.?[0-9]+([eE][+-]?[0-9]+)?$/)
 }
 
-# Date validation
+# 날짜 검증
 function is_valid_date(date_str) {
     return (date_str ~ /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/)
 }
 ```
 
-### 3. Performance Optimization
+### 3. 성능 최적화
 ```awk
-# Use string concatenation efficiently
-output = output separator line  # Better than multiple print statements
+# 문자열 연결을 효율적으로 사용
+output = output separator line  # 여러 print 문보다 더 나음
 
-# Avoid repeated regex compilation
+# 반복된 정규표현식 컴파일 피하기
 BEGIN { date_pattern = "^[0-9]{4}-[0-9]{2}-[0-9]{2}" }
-$1 ~ date_pattern { ... }  # Better than $1 ~ /^[0-9]{4}-[0-9]{2}-[0-9]{2}/
+$1 ~ date_pattern { ... }  # $1 ~ /^[0-9]{4}-[0-9]{2}-[0-9]{2}/보다 더 나음
 
-# Use arrays for lookups instead of repeated searches
+# 반복 검색 대신 룩업에 배열 사용
 BEGIN {
     valid_codes["200"] = valid_codes["301"] = valid_codes["404"] = 1
 }
-valid_codes[$3] { ... }  # Better than $3 == "200" || $3 == "301" || ...
+valid_codes[$3] { ... }  # $3 == "200" || $3 == "301" || ...보다 더 나음
 ```
 
-## Advanced Problem Categories
+## 고급 문제 카테고리
 
-### Data Aggregation and Analysis
-- Multi-dimensional data structures
-- Complex statistical calculations  
-- Time-series analysis
-- Cross-tabulation and pivot tables
+### 데이터 집계 및 분석
+- 다차원 데이터 구조
+- 복잡한 통계 계산
+- 시계열 분석
+- 교차표 및 피벗 테이블
 
-### Text Processing and Parsing
-- State machine implementations
-- Complex format parsing (JSON, XML, config files)
-- Multi-line record handling
-- Protocol parsing
+### 텍스트 처리 및 파싱
+- 상태 머신 구현
+- 복잡한 형식 파싱 (JSON, XML, 설정 파일)
+- 다중 라인 레코드 처리
+- 프로토콜 파싱
 
-### Report Generation
-- Professional formatting
-- Dynamic table generation
-- Chart and graph ASCII art
-- Summary statistics
+### 리포트 생성
+- 전문가 수준 포매팅
+- 동적 테이블 생성
+- 차트와 그래프 ASCII 아트
+- 요약 통계
 
-### System Integration
-- File processing workflows
-- Data transformation pipelines
-- Real-time data processing
-- Interface with other Unix tools
+### 시스템 통합
+- 파일 처리 워크플로우
+- 데이터 변환 파이프라인
+- 실시간 데이터 처리
+- 다른 Unix 도구와의 인터페이스
 
-## AWK vs Other Tools Comparison
+## AWK vs 다른 도구 비교
 
-### When to Choose AWK
-✅ **Strengths:**
-- Pattern-action programming model
-- Built-in field splitting and record processing
-- Associative arrays for data aggregation
-- Excellent for structured text processing
-- Fast for medium-sized datasets
-- No external dependencies
+### AWK를 선택할 때
+✅ **강점:**
+- 패턴-액션 프로그래밍 모델
+- 내장 필드 분할 및 레코드 처리
+- 데이터 집계를 위한 연관 배열
+- 구조화된 텍스트 처리에 우수
+- 중간 크기 데이터셋에서 빠름
+- 외부 의존성 없음
 
-❌ **Limitations:**
-- Limited string manipulation compared to Perl
-- No built-in JSON/XML parsing
-- Memory usage grows with large datasets
-- Limited debugging capabilities
-- Platform-specific extensions (GAWK vs MAWK)
+❌ **제한사항:**
+- Perl에 비해 제한된 문자열 조작
+- 내장 JSON/XML 파싱 기능 없음
+- 대용량 데이터셋에서 메모리 사용량 증가
+- 제한된 디버깅 기능
+- 플랫폼 특정 확장 (GAWK vs MAWK)
 
-### Performance Comparison Framework
+### 성능 비교 프레임워크
 ```bash
-# Test the same task with different tools
+# 다른 도구로 동일한 작업 테스트
 time awk 'your_awk_solution' data.txt
 time perl -ne 'your_perl_solution' data.txt  
 time python -c 'your_python_solution' data.txt

@@ -1,39 +1,39 @@
-# Getting Started with Command-Line Data Wrangling Master
+# 명령줄 데이터 랭글링 마스터 시작하기
 
-Welcome to the most comprehensive command-line text processing and data wrangling course available. This hands-on workbook contains **89 real-world problems** designed to master advanced command-line techniques used by DevOps engineers, security analysts, and data professionals.
+고급 명령줄 기법을 마스터할 수 있는 가장 포괄적인 명령줄 텍스트 처리 및 데이터 랭글링 코스에 오신 것을 환영합니다. 이 실습 워크북에는 DevOps 엔지니어, 보안 분석가, 데이터 전문가들이 사용하는 고급 명령줄 기법을 마스터하기 위해 설계된 **89개의 실제 문제**가 포함되어 있습니다.
 
 ---
 
-## Quick Start Guide
+## 빠른 시작 가이드
 
-### 1. Verify Prerequisites
+### 1. 전제 조건 확인
 ```bash
-# Check essential tools are available
+# 필수 도구가 사용 가능한지 확인
 which grep sed awk sort uniq cut
-which find xargs parallel  # Optional but recommended
+which find xargs parallel  # 선택사항이지만 권장
 
-# Verify GNU versions (preferred)
+# GNU 버전 확인 (권장)
 grep --version | head -1
 awk --version | head -1
 ```
 
-### 2. Navigate to the Workbook
+### 2. 워크북으로 이동
 ```bash
 cd pbl-workspace/
-ls -la  # Explore the structure
+ls -la  # 구조 탐색
 ```
 
-### 3. Try Your First Problem
+### 3. 첫 번째 문제 시도
 ```bash
-# Start with Part 1, Problem 1 (IPv4 validation)
+# 파트 1, 문제 1 (IPv4 유효성 검사)부터 시작
 cd parts/part1-regex/
 cat problem-01.md
 
-# Test with sample data
+# 샘플 데이터로 테스트
 head ../../logs/web_access.log
 ```
 
-### 4. Run the Benchmark Tool
+### 4. 벤치마크 도구 실행
 ```bash
 cd ../../performance/
 ./benchmark.sh single ../solutions/part1-regex/solution-01.sh ../../logs/web_access.log
@@ -41,233 +41,233 @@ cd ../../performance/
 
 ---
 
-## Learning Path Recommendations
+## 학습 경로 추천
 
-### **Beginner Track** (Start Here if New to Command-Line)
+### **초급 트랙** (명령줄 초보자라면 여기서 시작)
 ```
-1. Review resources/regex-cheatsheet.md
-2. Part 1: Problems 1-5 (Basic regex patterns)  
-3. Part 2: Problems 16-20 (Simple pipelines)
-4. Part 6: Problems 58-60 (Basic AWK)
-```
-
-### **Intermediate Track** (Have Basic grep/awk Experience)
-```
-1. Part 1: Problems 6-15 (Advanced regex)
-2. Part 2: Problems 21-30 (Complex pipelines) 
-3. Part 4: Problems 46-50 (Performance basics)
-4. Part 6: Problems 61-65 (Advanced AWK)
+1. resources/regex-cheatsheet.md 검토
+2. 파트 1: 문제 1-5 (기본 정규식 패턴)  
+3. 파트 2: 문제 16-20 (간단한 파이프라인)
+4. 파트 6: 문제 58-60 (기본 AWK)
 ```
 
-### **Advanced Track** (Ready for Professional Challenges)
+### **중급 트랙** (기본적인 grep/awk 경험이 있는 경우)
 ```
-1. All of Part 4 (Performance optimization)
-2. All of Part 7 (Security & forensics)
-3. Part 2: Problem 30 (Master integration)
-4. Part 6: Problem 69 (Complete AWK application)
+1. 파트 1: 문제 6-15 (고급 정규식)
+2. 파트 2: 문제 21-30 (복잡한 파이프라인) 
+3. 파트 4: 문제 46-50 (성능 기초)
+4. 파트 6: 문제 61-65 (고급 AWK)
 ```
 
-### **Expert Track** (Master-Level Challenges)
+### **고급 트랙** (전문적인 도전 준비가 된 경우)
 ```
-1. Create your own solutions to all 89 problems
-2. Optimize for sub-second performance on large datasets
-3. Build complete automation workflows (Part 8)
-4. Contribute additional problems to the workbook
+1. 파트 4 전체 (성능 최적화)
+2. 파트 7 전체 (보안 및 포렌식)
+3. 파트 2: 문제 30 (마스터 통합)
+4. 파트 6: 문제 69 (완전한 AWK 애플리케이션)
+```
+
+### **전문가 트랙** (마스터 레벨 도전)
+```
+1. 89개 문제 모두에 대한 자신만의 솔루션 작성
+2. 대용량 데이터셋에서 1초 미만 성능으로 최적화
+3. 완전한 자동화 워크플로우 구축 (파트 8)
+4. 워크북에 추가 문제 기여
 ```
 
 ---
 
-## How to Use This Workbook
+## 이 워크북 사용법
 
-### Problem-Solving Approach
-1. **Read the problem statement** thoroughly
-2. **Understand the expected output** format
-3. **Examine the sample data** to understand patterns
-4. **Start with a simple solution** that works
-5. **Optimize for performance** and edge cases
-6. **Compare with reference solutions**
+### 문제 해결 접근법
+1. **문제 설명을 철저히 읽기**
+2. **예상 출력 형식 이해하기**
+3. **샘플 데이터를 검토하여 패턴 이해하기**
+4. **작동하는 간단한 솔루션부터 시작하기**
+5. **성능과 엣지 케이스에 대해 최적화하기**
+6. **참조 솔루션과 비교하기**
 
-### Testing Your Solutions
+### 솔루션 테스트
 ```bash
-# Basic correctness testing
+# 기본 정확성 테스트
 your_solution.sh input_file.txt > your_output.txt
 diff your_output.txt expected_output.txt
 
-# Performance benchmarking
+# 성능 벤치마킹
 ../performance/benchmark.sh single your_solution.sh input_file.txt
 
-# Edge case testing
+# 엣지 케이스 테스트
 your_solution.sh edge_case_data.txt
 ```
 
-### Directory Structure Guide
+### 디렉토리 구조 가이드
 ```
 pbl-workspace/
-├── parts/           # Problem sets organized by topic
-│   ├── part1-regex/ # Advanced regex patterns (15 problems)
-│   ├── part2-pipelines/ # Multi-stage processing (15 problems)
-│   ├── part4-performance/ # Optimization challenges (12 problems)
-│   ├── part6-awk/   # Advanced AWK programming (12 problems)
-│   └── part7-security/ # Security & forensics (8 problems)
-├── logs/            # Realistic log files for exercises
-├── data/            # CSV, JSON, XML sample data  
-├── configs/         # Configuration files
-├── scripts/         # Your solution scripts (empty initially)
-├── solutions/       # Reference solutions
-├── performance/     # Benchmarking tools
-└── resources/       # Cheat sheets and guides
+├── parts/           # 주제별로 구성된 문제 세트
+│   ├── part1-regex/ # 고급 정규식 패턴 (15문제)
+│   ├── part2-pipelines/ # 다단계 처리 (15문제)
+│   ├── part4-performance/ # 최적화 도전 (12문제)
+│   ├── part6-awk/   # 고급 AWK 프로그래밍 (12문제)
+│   └── part7-security/ # 보안 및 포렌식 (8문제)
+├── logs/            # 실습용 실제 로그 파일
+├── data/            # CSV, JSON, XML 샘플 데이터  
+├── configs/         # 구성 파일
+├── scripts/         # 여러분의 솔루션 스크립트 (초기에는 비어있음)
+├── solutions/       # 참조 솔루션
+├── performance/     # 벤치마킹 도구
+└── resources/       # 치트 시트 및 가이드
 ```
 
 ---
 
-## Essential Resources
+## 필수 리소스
 
-### Quick Reference Files
-- **`resources/regex-cheatsheet.md`** - Regex syntax across different tools
-- **`resources/performance-guide.md`** - Optimization techniques and benchmarking
-- **`resources/pipeline-patterns.md`** - Advanced pipeline construction patterns
+### 빠른 참조 파일
+- **`resources/regex-cheatsheet.md`** - 다양한 도구의 정규식 문법
+- **`resources/performance-guide.md`** - 최적화 기법 및 벤치마킹
+- **`resources/pipeline-patterns.md`** - 고급 파이프라인 구성 패턴
 
-### Sample Data Overview
-- **`logs/web_access.log`** (1.8MB) - 12K+ web server access entries
-- **`logs/application.log`** (24KB) - Multi-line stack traces and SQL queries  
-- **`logs/audit.log`** (26KB) - Security events and authentication logs
-- **`data/users.csv`** (1.0MB) - 12K+ user records with data quality issues
-- **`data/transactions.json`** (7.0MB) - 5K complex nested transaction records
-- **`data/corrupted_data.txt`** (8.3KB) - Intentionally malformed CSV for error handling
-
----
-
-## Problem Categories & Difficulty
-
-### Part 1: Advanced Regex Patterns (15 problems)
-**Focus:** Master pattern matching across grep, sed, awk, and Perl
-- IPv4/IPv6 address validation
-- RFC-compliant email extraction  
-- Complex nested parentheses parsing
-- Credit card number masking
-- Multi-format timestamp parsing
-
-### Part 2: Multi-Stage Pipeline Processing (15 problems)
-**Focus:** Build sophisticated command chains with process substitution
-- 4-6 command pipelines for data correlation
-- Process substitution mastery
-- Real-time log correlation
-- Multi-file content merging
-- Error recovery pipelines
-
-### Part 4: Performance Optimization Challenges (12 problems)
-**Focus:** Achieve specific time/memory targets on large datasets
-- Process 500MB+ files in under 30 seconds
-- Memory-efficient stream processing
-- Parallel processing with GNU parallel
-- Algorithm optimization comparisons
-- Multi-tool performance benchmarking
-
-### Part 6: Advanced AWK Programming (12 problems)
-**Focus:** Use AWK as a complete programming language
-- Associative arrays for complex data structures
-- Custom functions and libraries
-- State machines for parsing complex formats
-- Professional reporting engines
-- Multi-file processing with FNR/NR
-
-### Part 7: Security & Forensics Scenarios (8 problems)
-**Focus:** Defensive security analysis and incident response
-- Brute force attack detection
-- Multi-source event correlation
-- IoC (Indicator of Compromise) extraction
-- Anomaly detection using statistical analysis
-- Log sanitization for data sharing
+### 샘플 데이터 개요
+- **`logs/web_access.log`** (1.8MB) - 12K+ 웹 서버 접근 기록
+- **`logs/application.log`** (24KB) - 멀티라인 스택 트레이스 및 SQL 쿼리  
+- **`logs/audit.log`** (26KB) - 보안 이벤트 및 인증 로그
+- **`data/users.csv`** (1.0MB) - 데이터 품질 문제가 있는 12K+ 사용자 레코드
+- **`data/transactions.json`** (7.0MB) - 5K개의 복잡한 중첩 트랜잭션 레코드
+- **`data/corrupted_data.txt`** (8.3KB) - 오류 처리를 위한 의도적으로 손상된 CSV
 
 ---
 
-## Performance Targets & Scoring
+## 문제 카테고리 및 난이도
 
-### Performance Categories
-- **Small files (<10MB):** ≤5 seconds, ≤50MB RAM
-- **Medium files (10-100MB):** ≤30 seconds, ≤100MB RAM
-- **Large files (100MB-1GB):** ≤2 minutes, ≤200MB RAM  
-- **Huge files (>1GB):** ≤5 minutes, ≤500MB RAM
+### 파트 1: 고급 정규식 패턴 (15문제)
+**초점:** grep, sed, awk, Perl 전반에서 패턴 매칭 마스터
+- IPv4/IPv6 주소 유효성 검사
+- RFC 호환 이메일 추출  
+- 복잡한 중첩 괄호 파싱
+- 신용카드 번호 마스킹
+- 다중 형식 타임스탬프 파싱
 
-### Scoring System
-Each problem is graded on multiple criteria:
-- **Correctness:** Does it produce the right output?
-- **Performance:** Does it meet time/memory targets?
-- **Code Quality:** Is it readable and maintainable?
-- **Edge Cases:** Does it handle error conditions gracefully?
+### 파트 2: 다단계 파이프라인 처리 (15문제)
+**초점:** 프로세스 치환을 사용한 정교한 명령 체인 구축
+- 데이터 상관관계를 위한 4-6개 명령 파이프라인
+- 프로세스 치환 마스터리
+- 실시간 로그 상관관계
+- 다중 파일 내용 병합
+- 오류 복구 파이프라인
 
-### Grade Levels
-- **Grade A:** Exceeds performance targets, handles all edge cases
-- **Grade B:** Meets performance targets, handles common edge cases
-- **Grade C:** Works correctly but may exceed performance targets
-- **Grade F:** Incorrect output or fails to complete
+### 파트 4: 성능 최적화 도전 (12문제)
+**초점:** 대용량 데이터셋에서 특정 시간/메모리 목표 달성
+- 500MB+ 파일을 30초 내에 처리
+- 메모리 효율적인 스트림 처리
+- GNU parallel을 사용한 병렬 처리
+- 알고리즘 최적화 비교
+- 다중 도구 성능 벤치마킹
 
----
+### 파트 6: 고급 AWK 프로그래밍 (12문제)
+**초점:** AWK를 완전한 프로그래밍 언어로 사용
+- 복잡한 데이터 구조를 위한 연관 배열
+- 사용자 정의 함수 및 라이브러리
+- 복잡한 형식 파싱을 위한 상태 머신
+- 전문적인 보고서 엔진
+- FNR/NR을 사용한 다중 파일 처리
 
-## Real-World Applications
-
-### DevOps & Site Reliability Engineering
-- Log analysis and troubleshooting
-- Performance monitoring and alerting
-- Configuration management and deployment
-- Service health monitoring
-- Incident response and forensics
-
-### Security Analysis & SOC Operations  
-- Security event correlation
-- Threat hunting and detection
-- Incident response and forensics
-- Log analysis for compliance
-- Automated threat intelligence processing
-
-### Data Engineering & Analytics
-- ETL pipeline development
-- Data quality assessment and cleaning
-- Real-time stream processing
-- Report generation and automation
-- Large dataset processing optimization
-
-### System Administration
-- Log rotation and archival
-- System monitoring and alerting
-- Backup verification and reporting
-- Configuration auditing
-- Performance tuning and optimization
+### 파트 7: 보안 및 포렌식 시나리오 (8문제)
+**초점:** 방어적 보안 분석 및 인시던트 대응
+- 브루트 포스 공격 감지
+- 다중 소스 이벤트 상관관계
+- IoC (침해 지표) 추출
+- 통계 분석을 사용한 이상 탐지
+- 데이터 공유를 위한 로그 위생화
 
 ---
 
-## Community & Contribution
+## 성능 목표 및 점수
 
-### Sharing Your Solutions
-1. Create your solutions in the `scripts/` directory
-2. Use descriptive naming: `part1_problem01_your_approach.sh`
-3. Document your optimization techniques
-4. Share performance benchmarks
+### 성능 카테고리
+- **작은 파일 (<10MB):** ≤5초, ≤50MB RAM
+- **중간 파일 (10-100MB):** ≤30초, ≤100MB RAM
+- **큰 파일 (100MB-1GB):** ≤2분, ≤200MB RAM  
+- **거대 파일 (>1GB):** ≤5분, ≤500MB RAM
 
-### Adding New Problems
-1. Follow the existing problem format
-2. Provide realistic sample data
-3. Include reference solutions
-4. Test across different environments
+### 점수 시스템
+각 문제는 여러 기준으로 평가됩니다:
+- **정확성:** 올바른 출력을 생성하는가?
+- **성능:** 시간/메모리 목표를 달성하는가?
+- **코드 품질:** 읽기 쉽고 유지보수 가능한가?
+- **엣지 케이스:** 오류 조건을 우아하게 처리하는가?
 
-### Getting Help
-- Read the problem statement carefully
-- Check the relevant cheat sheet in `resources/`
-- Examine the sample data to understand patterns
-- Start with a working solution, then optimize
-- Compare your approach with reference solutions
+### 등급 수준
+- **A 등급:** 성능 목표를 초과하고, 모든 엣지 케이스 처리
+- **B 등급:** 성능 목표를 만족하고, 일반적인 엣지 케이스 처리
+- **C 등급:** 정확하게 작동하지만 성능 목표를 초과할 수 있음
+- **F 등급:** 잘못된 출력 또는 완료 실패
 
 ---
 
-## Next Steps
+## 실제 적용 분야
 
-1. **Choose your learning track** based on current skill level
-2. **Set up your environment** with the recommended tools
-3. **Start with your first problem** - we recommend Part 1, Problem 1
-4. **Join the community** and share your solutions
-5. **Challenge yourself** with increasingly difficult problems
-6. **Apply these skills** to real-world data processing challenges
+### DevOps 및 사이트 신뢰성 엔지니어링
+- 로그 분석 및 문제 해결
+- 성능 모니터링 및 경고
+- 구성 관리 및 배포
+- 서비스 상태 모니터링
+- 인시던트 대응 및 포렌식
 
-Remember: The goal isn't just to solve problems, but to build intuition for when and how to use different command-line tools effectively. Each problem teaches patterns and techniques that apply to hundreds of similar real-world scenarios.
+### 보안 분석 및 SOC 운영  
+- 보안 이벤트 상관관계
+- 위협 헌팅 및 탐지
+- 인시던트 대응 및 포렌식
+- 컴플라이언스를 위한 로그 분석
+- 자동화된 위협 인텔리전스 처리
 
-**Happy data wrangling!** 🚀
+### 데이터 엔지니어링 및 분석
+- ETL 파이프라인 개발
+- 데이터 품질 평가 및 정리
+- 실시간 스트림 처리
+- 보고서 생성 및 자동화
+- 대용량 데이터셋 처리 최적화
+
+### 시스템 관리
+- 로그 순환 및 아카이브
+- 시스템 모니터링 및 경고
+- 백업 검증 및 보고
+- 구성 감사
+- 성능 튜닝 및 최적화
+
+---
+
+## 커뮤니티 및 기여
+
+### 솔루션 공유
+1. `scripts/` 디렉토리에 솔루션 작성
+2. 설명적인 이름 사용: `part1_problem01_your_approach.sh`
+3. 최적화 기법 문서화
+4. 성능 벤치마크 공유
+
+### 새로운 문제 추가
+1. 기존 문제 형식을 따르기
+2. 현실적인 샘플 데이터 제공
+3. 참조 솔루션 포함
+4. 다양한 환경에서 테스트
+
+### 도움 받기
+- 문제 설명을 신중히 읽기
+- `resources/`의 관련 치트 시트 확인
+- 샘플 데이터를 검토하여 패턴 이해
+- 작동하는 솔루션부터 시작한 후 최적화
+- 참조 솔루션과 접근법 비교
+
+---
+
+## 다음 단계
+
+1. **현재 기술 수준에 따라 학습 트랙 선택**
+2. **권장 도구로 환경 설정**
+3. **첫 번째 문제 시작** - 파트 1, 문제 1을 추천합니다
+4. **커뮤니티에 참여하고** 솔루션 공유
+5. **점점 어려운 문제로 자신에게 도전**
+6. **실제 데이터 처리 과제에 이러한 기술 적용**
+
+기억하세요: 목표는 단순히 문제를 해결하는 것이 아니라, 언제 어떻게 다양한 명령줄 도구를 효과적으로 사용할지에 대한 직감을 기르는 것입니다. 각 문제는 수백 가지 유사한 실제 시나리오에 적용되는 패턴과 기법을 가르칩니다.
+
+**즐거운 데이터 랭글링!**

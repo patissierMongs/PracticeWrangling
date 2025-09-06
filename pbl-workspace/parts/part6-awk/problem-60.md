@@ -1,5 +1,5 @@
-# Problem 60: State Machine Log Parser
-**Difficulty:** ★★★★ | **Focus:** State machines | **File:** `logs/application.log`
+# 문제 60: 상태 머신 로그 파서
+**난이도:** ★★★★ | **중점:** 상태 머신 | **파일:** `logs/application.log`
 
 ## Objective
 Build a sophisticated AWK state machine to parse multi-line log entries including stack traces, SQL queries, and nested error conditions from application logs.

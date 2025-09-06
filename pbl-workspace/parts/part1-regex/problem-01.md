@@ -1,24 +1,24 @@
-# Problem 1: IPv4 Address Validation
-**Difficulty:** ★★☆ | **Engine:** POSIX ERE | **File:** `logs/web_access.log`
+# 문제 1: IPv4 주소 검증
+**난이도:** ★★☆ | **엔진:** POSIX ERE | **파일:** `logs/web_access.log`
 
-## Objective
-Extract and validate IPv4 addresses from web access logs, distinguishing between valid and invalid IP addresses.
+## 목표
+웹 접근 로그에서 IPv4 주소를 추출하고 검증하여 유효한 IP 주소와 무효한 IP 주소를 구별합니다.
 
-## Problem Statement
-The web access log contains various IP addresses, but some entries may have malformed IPs due to logging errors or proxy configurations. Create a command that:
+## 문제 설명
+웹 접근 로그에는 다양한 IP 주소가 포함되어 있지만, 로깅 오류나 프록시 설정으로 인해 일부 항목에는 잘못된 형식의 IP가 있을 수 있습니다. 다음과 같은 명령을 만드세요:
 
-1. Extracts all potential IPv4 addresses from the access log
-2. Validates that they follow proper IPv4 format (0-255 for each octet)
-3. Outputs only valid IPv4 addresses, one per line
-4. Counts the total number of unique valid IPs
+1. 접근 로그에서 모든 잠재적인 IPv4 주소를 추출
+2. 적절한 IPv4 형식을 따르는지 검증 (각 옥텟에 대해 0-255)
+3. 유효한 IPv4 주소만 한 줄에 하나씩 출력
+4. 고유한 유효 IP의 총 개수 계산
 
-## Requirements
-- Use POSIX ERE (Extended Regular Expressions)
-- Handle edge cases: leading zeros, out-of-range octets
-- Must work with `grep -E` and `sed -E`
-- Solution should complete in under 2 seconds for the sample file
+## 요구사항
+- POSIX ERE (확장 정규표현식) 사용
+- 예외 상황 처리: 앞자리 0, 범위를 벗어난 옥텟
+- `grep -E`와 `sed -E`에서 작동해야 함
+- 샘플 파일에 대해 2초 이내에 완료되어야 함
 
-## Expected Output Format
+## 예상 출력 형식
 ```
 192.168.1.1
 203.45.78.123
@@ -27,13 +27,13 @@ The web access log contains various IP addresses, but some entries may have malf
 Total unique valid IPs: 1247
 ```
 
-## Test Cases
-Your solution should correctly handle:
-- Valid IPs: `192.168.1.1`, `203.45.78.123`, `127.0.0.1`
-- Invalid IPs: `256.1.1.1`, `192.168.1.256`, `192.168.1`
-- Edge cases: `01.1.1.1` (leading zeros), `192.168.1.01`
+## 테스트 케이스
+솔루션은 다음을 올바르게 처리해야 합니다:
+- 유효한 IP: `192.168.1.1`, `203.45.78.123`, `127.0.0.1`
+- 무효한 IP: `256.1.1.1`, `192.168.1.256`, `192.168.1`
+- 예외 케이스: `01.1.1.1` (앞자리 0), `192.168.1.01`
 
-## Sample Command Template
+## 샘플 명령 템플릿
 ```bash
 # Extract and validate IPv4 addresses
 grep -E "YOUR_REGEX_HERE" ../../logs/web_access.log | \
@@ -41,23 +41,23 @@ grep -E "YOUR_REGEX_HERE" ../../logs/web_access.log | \
     sort -u | wc -l
 ```
 
-## Hints
-1. IPv4 octets range from 0-255
-2. Leading zeros should be considered invalid
-3. Each octet: `(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])`
-4. Consider word boundaries to avoid partial matches
-5. Use `sort -u` to count unique IPs
+## 힌트
+1. IPv4 옥텟의 범위는 0-255입니다
+2. 앞자리 0은 무효한 것으로 간주해야 합니다
+3. 각 옥텟: `(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])`
+4. 부분 매치를 피하기 위해 단어 경계를 고려하세요
+5. 고유 IP를 세기 위해 `sort -u`를 사용하세요
 
-## Advanced Challenge
-Modify your solution to also extract IPs from different log positions:
-- Client IP (first field)
-- X-Forwarded-For headers  
-- Proxy chains in the log format
+## 고급 챌린지
+다음과 같이 다른 로그 위치에서도 IP를 추출하도록 솔루션을 수정하세요:
+- 클라이언트 IP (첫 번째 필드)
+- X-Forwarded-For 헤더
+- 로그 형식의 프록시 체인
 
-## Performance Target
-- Process sample file (1.8MB) in < 2 seconds
-- Memory usage < 50MB
-- Handle files up to 100MB efficiently
+## 성능 목표
+- 샘플 파일 (1.8MB)을 2초 이내에 처리
+- 메모리 사용량 50MB 미만
+- 최대 100MB 파일을 효율적으로 처리
 
 ---
-**Next:** [Problem 2: IPv6 Address Detection](problem-02.md)
+**다음:** [문제 2: IPv6 주소 감지](problem-02.md)

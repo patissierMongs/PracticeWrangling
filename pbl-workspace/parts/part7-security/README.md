@@ -1,53 +1,53 @@
-# Part 7: Security & Forensics Scenarios
-## 8 Defensive Security Analysis Challenges
+# Part 7: 보안 및 포렌식 시나리오
+## 8개의 수비적 보안 분석 챌린지
 
-This section focuses on using command-line tools for defensive security analysis, threat detection, and incident response. Problems emphasize real-world security scenarios that require sophisticated data correlation and pattern analysis.
+이 섹션은 수비적 보안 분석, 위협 탐지, 인시던트 대응을 위한 명령줄 도구 사용에 중점을 둡니다. 문제들은 정교한 데이터 상관관계와 패턴 분석이 필요한 실제 보안 시나리오를 강조합니다.
 
-### Learning Objectives
-- Detect security threats using log analysis techniques
-- Correlate events across multiple log sources
-- Extract Indicators of Compromise (IoCs) from various data formats
-- Implement automated threat detection pipelines
-- Sanitize logs for sharing while preserving analytical value
-- Analyze network traffic patterns for anomalies
-- Build forensic analysis workflows
+### 학습 목표
+- 로그 분석 기법을 사용한 보안 위협 탐지
+- 여러 로그 소스 간의 이벤트 상관관계 분석
+- 다양한 데이터 형식에서 연합 지표(IoC) 추출
+- 자동화된 위협 탐지 파이프라인 구현
+- 분석 가치를 보존하면서 로그 공유를 위한 살균
+- 비정상 탐지를 위한 네트워크 트래픽 패턴 분석
+- 포렌식 분석 워크플로우 구축
 
-### Security Analysis Focus Areas
-- **Brute Force Detection:** Login attempt pattern analysis
-- **Anomaly Detection:** Statistical deviation identification
-- **IoC Extraction:** Automated indicator harvesting
-- **Log Correlation:** Cross-source event correlation
-- **Data Sanitization:** PII removal for log sharing
-- **Network Analysis:** Traffic pattern examination
-- **Incident Response:** Forensic data collection
+### 보안 분석 중점 영역
+- **무차별 대입 공격 탐지:** 로그인 시도 패턴 분석
+- **비정상 탐지:** 통계적 편차 식별
+- **IoC 추출:** 자동화된 지표 수집
+- **로그 상관관계:** 다중 소스 이벤트 상관관계
+- **데이터 살균:** 로그 공유를 위한 PII 제거
+- **네트워크 분석:** 트래픽 패턴 검사
+- **인시던트 대응:** 포렌식 데이터 수집
 
-**⚠️ Note:** All problems focus on defensive security and legitimate analysis techniques. Solutions should be used only for authorized security monitoring and incident response.
+**⚠️ 참고:** 모든 문제는 수비적 보안과 합법적인 분석 기법에 중점을 둡니다. 솔루션은 승인된 보안 모니터링과 인시던트 대응에만 사용되어야 합니다.
 
 ---
 
-## Problem Index
+## 문제 인덱스
 
-| # | Problem | Difficulty | Focus Area | Files Used |
-|---|---------|------------|------------|------------|
-| 70 | Brute Force Attack Detection | ★★★ | Login analysis | logs/audit.log |
-| 71 | Multi-Source Security Correlation | ★★★★ | Event correlation | logs/*.log |
-| 72 | IoC Extraction Pipeline | ★★★ | Threat intelligence | All log files |
-| 73 | Anomaly Detection Engine | ★★★★ | Statistical analysis | logs/web_access.log |
-| 74 | Log Sanitization for Sharing | ★★★ | Data protection | Multiple files |
-| 75 | Network Traffic Analysis | ★★★★ | Network security | logs/web_access.log |
-| 76 | Forensic Timeline Generator | ★★★★ | Incident response | All files |
-| 77 | Automated Threat Hunting | ★★★★★ | Complete workflow | All security logs |
+| # | 문제 | 난이도 | 중점 영역 | 사용된 파일 |
+|---|---------|----------|----------|-------------|
+| 70 | 무차별 대입 공격 탐지 | ★★★ | 로그인 분석 | logs/audit.log |
+| 71 | 다중 소스 보안 상관관계 | ★★★★ | 이벤트 상관관계 | logs/*.log |
+| 72 | IoC 추출 파이프라인 | ★★★ | 위협 인텔리전스 | All log files |
+| 73 | 비정상 탐지 엔진 | ★★★★ | 통계 분석 | logs/web_access.log |
+| 74 | 공유를 위한 로그 살균 | ★★★ | 데이터 보호 | Multiple files |
+| 75 | 네트워크 트래픽 분석 | ★★★★ | 네트워크 보안 | logs/web_access.log |
+| 76 | 포렌식 타임라인 생성기 | ★★★★ | 인시던트 대응 | All files |
+| 77 | 자동화된 위협 사냥 | ★★★★★ | 완전한 워크플로우 | All security logs |
 
-**Difficulty Legend:**
-- ★★★ = Advanced (complex pattern detection)
-- ★★★★ = Expert (multi-source correlation, statistical analysis)
-- ★★★★★ = Master (complete security workflows)
+**난이도 범례:**
+- ★★★ = 고급 (복잡한 패턴 탐지)
+- ★★★★ = 전문가 (다중 소스 상관관계, 통계 분석)
+- ★★★★★ = 마스터 (완전한 보안 워크플로우)
 
-## Security Analysis Patterns
+## 보안 분석 패턴
 
-### 1. Brute Force Detection
+### 1. 무차별 대입 공격 탐지
 ```bash
-# Detect failed login attempts
+# 실패한 로그인 시도 탐지
 awk '
 /failed login/ {
     split($1 " " $2, timestamp, " ")
@@ -61,24 +61,24 @@ END {
         for (time in failed_attempts[ip]) {
             total += failed_attempts[ip][time]
         }
-        if (total > 5) {  # Threshold for suspicious activity
+        if (total > 5) {  # 의심스러운 활동에 대한 임계값
             print "SUSPICIOUS IP:", ip, "Failed attempts:", total
         }
     }
 }' audit.log
 ```
 
-### 2. Statistical Anomaly Detection
+### 2. 통계적 비정상 탐지
 ```bash
-# Detect unusual request volumes
+# 비정상적인 요청 량 탐지
 awk '
 {
-    hour = substr($4, 2, 14)  # Extract hour from timestamp
+    hour = substr($4, 2, 14)  # 타임스탬프에서 시간 추출
     requests_per_hour[hour]++
 }
 
 END {
-    # Calculate mean and standard deviation
+    # 평균과 표준편차 계산
     total = sum = sum_sq = 0
     for (hour in requests_per_hour) {
         total++
@@ -90,7 +90,7 @@ END {
     variance = (sum_sq - sum^2/total) / (total-1)
     stddev = sqrt(variance)
     
-    # Flag hours with unusual activity
+    # 비정상적인 활동이 있는 시간 플래그
     for (hour in requests_per_hour) {
         z_score = (requests_per_hour[hour] - mean) / stddev
         if (z_score > 2 || z_score < -2) {
@@ -100,9 +100,9 @@ END {
 }' web_access.log
 ```
 
-### 3. Multi-Source Event Correlation
+### 3. 다중 소스 이벤트 상관관계
 ```bash
-# Correlate events across multiple log sources
+# 여러 로그 소스에서 이벤트 상관관계 분석
 join -j 1 \
   <(awk '/failed login/ {print $1" "$2, $0}' auth.log | sort) \
   <(awk '/suspicious/ {print $1" "$2, $0}' system.log | sort) | \
@@ -116,63 +116,63 @@ awk '
 }'
 ```
 
-## Defensive Security Techniques
+## 수비적 보안 기법
 
-### 1. Threat Intelligence Integration
+### 1. 위협 인텔리전스 통합
 ```bash
-# Extract potential IoCs and validate against threat feeds
+# 잠재적인 IoC를 추출하고 위협 피드에 대해 검증
 extract_indicators() {
     local log_file="$1"
     
-    # IP addresses
+    # IP 주소
     grep -Eo '\b([0-9]{1,3}\.){3}[0-9]{1,3}\b' "$log_file" | \
         grep -v '^192\.168\.' | grep -v '^10\.' | grep -v '^172\.(1[6-9]|2[0-9]|3[01])\.' | \
         sort -u > potential_ips.txt
     
-    # Domain names  
+    # 도메인 이름  
     grep -Eo '[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}' "$log_file" | \
         grep -v 'localhost\|example\.com' | \
         sort -u > potential_domains.txt
         
-    # File hashes (if present)
+    # 파일 해시 (있는 경우)
     grep -Eo '\b[a-fA-F0-9]{32}\b|\b[a-fA-F0-9]{40}\b|\b[a-fA-F0-9]{64}\b' "$log_file" | \
         sort -u > potential_hashes.txt
 }
 ```
 
-### 2. Log Privacy Protection
+### 2. 로그 개인정보 보호
 ```bash
-# Sanitize logs while preserving analytical value
+# 분석 가치를 보존하면서 로그 살균
 sanitize_logs() {
     local input_file="$1"
     local output_file="$2"
     
-    # Replace IP addresses with anonymized versions
+    # IP 주소를 익명화된 버전으로 교체
     sed -E 's/\b([0-9]{1,3}\.)[0-9]{1,3}\.([0-9]{1,3}\.)[0-9]{1,3}\b/\1xxx.\2xxx/g' "$input_file" | \
     
-    # Replace email addresses
+    # 이메일 주소 교체
     sed -E 's/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/user@domain.com/g' | \
     
-    # Replace usernames (common patterns)
+    # 사용자명 교체 (일반적인 패턴)
     sed -E 's/user=[^[:space:]]+/user=<redacted>/g' | \
     
-    # Replace session IDs and tokens
+    # 세션 ID와 토큰 교체
     sed -E 's/session=[a-zA-Z0-9]+/session=<redacted>/g' > "$output_file"
 }
 ```
 
-### 3. Forensic Timeline Construction
+### 3. 포렌식 타임라인 구축
 ```bash
-# Build comprehensive timeline from multiple sources
+# 여러 소스에서 종합 타임라인 구축
 build_timeline() {
     {
-        # Web access logs
+        # 웹 접근 로그
         awk '{print $4, "WEB", $1, $7, $9}' web_access.log
         
-        # System events  
+        # 시스템 이벤트  
         awk '{print $1" "$2" "$3, "SYS", $5, $6, $7}' system_events.log
         
-        # Audit logs
+        # 감사 로그
         awk '{print $1" "$2, "AUDIT", $4, $5, $6}' audit.log
         
     } | sort -k1,1 | \
@@ -182,12 +182,12 @@ build_timeline() {
 }
 ```
 
-## Security Analysis Workflows
+## 보안 분석 워크플로우
 
-### 1. Incident Response Pipeline
+### 1. 인시던트 대응 파이프라인
 ```bash
 #!/bin/bash
-# Automated incident response data collection
+# 자동화된 인시던트 대응 데이터 수집
 
 incident_response() {
     local incident_time="$1"
@@ -195,11 +195,11 @@ incident_response() {
     
     mkdir -p "$output_dir"
     
-    # Extract events around incident time
+    # 인시던트 시간 주변의 이벤트 추출
     for log in logs/*.log; do
         awk -v incident="$incident_time" '
         function time_diff(t1, t2) {
-            # Calculate time difference in minutes
+            # 분 단위로 시간 차이 계산
             return (mktime(t1) - mktime(t2)) / 60
         }
         
@@ -211,29 +211,29 @@ incident_response() {
         }' "$log" >> "$output_dir/timeline.txt"
     done
     
-    # Generate summary report
+    # 요약 리포트 생성
     analyze_incident_data "$output_dir"
 }
 ```
 
-### 2. Threat Hunting Automation
+### 2. 위협 사냥 자동화
 ```bash
-# Automated threat hunting queries
+# 자동화된 위협 사냥 쿼리
 threat_hunt() {
     echo "THREAT HUNTING REPORT - $(date)"
     echo "=================================="
     
-    # Hunt 1: Suspicious process execution patterns
+    # 사냥 1: 의심스러운 프로세스 실행 패턴
     echo "1. Suspicious Process Patterns:"
     grep -i "powershell\|cmd\.exe\|wscript\|cscript" logs/system_events.log | \
     awk '{print "  " $1, $2, ":", $0}'
     
-    # Hunt 2: Unusual network connections
+    # 사냥 2: 비정상적인 네트워크 연결
     echo -e "\n2. Unusual Network Activity:"
     awk '$9 ~ /^4[0-9]{2}/ {print $1, $7, $9}' logs/web_access.log | \
     sort | uniq -c | sort -nr | head -10
     
-    # Hunt 3: Authentication anomalies
+    # 사냥 3: 인증 비정상
     echo -e "\n3. Authentication Anomalies:"
     awk '
     /failed login/ {
@@ -245,38 +245,38 @@ threat_hunt() {
     END {
         for (user in failed) {
             if (failed[user] > 10 && success[user] == 0) {
-                print "  ALERT: User", user, "has", failed[user], "failed logins, no success"
+                print "  경고: 사용자", user, "가 실패한 로그인", failed[user], "회, 성공 없음"
             }
         }
     }' logs/audit.log
 }
 ```
 
-## Privacy and Legal Considerations
+## 개인정보 및 법적 고려사항
 
-### Data Handling Guidelines
-1. **Data Minimization:** Only collect necessary data for security analysis
-2. **Anonymization:** Remove or pseudonymize PII when possible
-3. **Retention:** Follow organizational data retention policies
-4. **Access Control:** Limit access to security logs to authorized personnel
-5. **Documentation:** Maintain audit trails of forensic activities
+### 데이터 처리 가이드라인
+1. **데이터 최소화:** 보안 분석에 필요한 데이터만 수집
+2. **익명화:** 가능한 경우 PII 제거 또는 가명 처리
+3. **보유:** 조직의 데이터 보유 정책 준수
+4. **접근 제어:** 보안 로그에 대한 접근을 근무자로 제한
+5. **문서화:** 포렌식 활동의 감사 추적 유지
 
-### Ethical Security Analysis
-- Only analyze systems you have authorization to monitor
-- Focus on defensive capabilities and threat detection
-- Respect privacy laws and organizational policies
-- Use findings only for legitimate security purposes
-- Share threat intelligence responsibly within security community
+### 윤리적 보안 분석
+- 모니터링할 권한이 있는 시스템만 분석
+- 수비적 역량과 위협 탐지에 집중
+- 개인정보보호법과 조직 정책 준수
+- 합법적인 보안 목적으로만 결과 사용
+- 보안 커뮤니티 내에서 위협 인텔리전스를 책임감 있게 공유
 
-## Advanced Correlation Techniques
+## 고급 상관관계 기법
 
-### 1. Behavioral Analysis
+### 1. 행동 분석
 ```bash
-# Detect unusual user behavior patterns
+# 비정상적인 사용자 행동 패턴 탐지
 analyze_user_behavior() {
     awk '
     BEGIN { 
-        # Define normal business hours
+        # 정상 업무 시간 정의
         business_start = 9
         business_end = 17
     }
@@ -285,7 +285,7 @@ analyze_user_behavior() {
         match($0, /user=([^[:space:]]+)/, user_array)
         user = user_array[1]
         
-        # Extract hour from timestamp
+        # 타임스탬프에서 시간 추출
         hour = substr($4, 14, 2)
         
         activity[user][hour]++
@@ -305,21 +305,21 @@ analyze_user_behavior() {
             off_hours_percent = (off_hours / total_activity[user]) * 100
             
             if (off_hours_percent > 30) {
-                print "SUSPICIOUS: User", user, "has", off_hours_percent "% off-hours activity"
+                print "의심: 사용자", user, "이 비업무시간 활동", off_hours_percent "%를 대함"
             }
         }
     }' logs/web_access.log
 }
 ```
 
-### 2. Geographic Analysis
+### 2. 지리적 분석
 ```bash
-# Detect impossible travel scenarios (if GeoIP data available)
+# 불가능한 이동 시나리오 탐지 (GeoIP 데이터가 사용 가능한 경우)
 detect_impossible_travel() {
     awk '
     function distance(lat1, lon1, lat2, lon2) {
-        # Haversine formula for distance calculation
-        # Returns distance in kilometers
+        # 거리 계산을 위한 하버사인 공식
+        # 킬로미터 단위로 거리 반환
     }
     
     /user=/ {
@@ -327,18 +327,18 @@ detect_impossible_travel() {
         timestamp = $4
         ip = $1
         
-        # Look up geographic location of IP
-        # (In real scenario, integrate with GeoIP database)
+        # IP의 지리적 위치 조회
+        # (실제 시나리오에서는 GeoIP 데이터베이스와 통합)
         
         if (user in last_location) {
             time_diff = timestamp - last_timestamp[user]
             dist = distance(last_lat[user], last_lon[user], current_lat, current_lon)
             
-            # Calculate maximum possible travel speed
+            # 최대 가능 이동 속도 계산
             max_speed = dist / (time_diff / 3600)  # km/h
             
-            if (max_speed > 900) {  # Faster than commercial aircraft
-                print "IMPOSSIBLE TRAVEL:", user, "from", last_location[user], "to", current_location, "in", time_diff/3600, "hours"
+            if (max_speed > 900) {  # 상업용 항공기보다 빠름
+                print "불가능한 이동:", user, "가", last_location[user], "에서", current_location, "으로", time_diff/3600, "시간 내에"
             }
         }
         

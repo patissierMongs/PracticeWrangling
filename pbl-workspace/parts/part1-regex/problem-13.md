@@ -91,7 +91,7 @@ This problem requires advanced PCRE features:
 (?<paren>\((?:[^()\\]|\\.|(?&paren))*\))
 ```
 
-## Sample Command Structure
+## 샘플 명령 구조
 ```bash
 # Method 1: Using PCRE recursive patterns
 grep -Po '\((?:[^()\\]|\\.|(?R))*\)' ../../configs/*.conf | \
@@ -164,11 +164,11 @@ extract_by_depth() {
 4. **Visualize matching:** Use tools that highlight regex matches
 5. **Edge cases:** Test with malformed/unbalanced parentheses
 
-## Alternative Approaches
-If PCRE recursive patterns aren't available:
+## 대체 접근 방식
+PCRE 재귀 패턴을 사용할 수 없는 경우:
 
 ```bash
-# Method 1: Stack-based parsing with awk
+# 방법 1: awk를 사용한 스택 기반 파싱
 awk '
 {
     stack_depth = 0
@@ -180,7 +180,7 @@ awk '
     }
 }'
 
-# Method 2: Multiple passes for different depths
+# 방법 2: 다른 깊이에 대한 다중 패스
 grep -o '([^()]*)'  # Depth 1 only
 grep -o '([^()]*([^()]*)[^()]*)'  # Depth 2
 ```

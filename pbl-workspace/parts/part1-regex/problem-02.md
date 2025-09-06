@@ -1,34 +1,34 @@
-# Problem 2: IPv6 Address Detection
-**Difficulty:** ★★★ | **Engine:** PCRE | **File:** `logs/system_events.log`
+# 문제 2: IPv6 주소 감지
+**난이도:** ★★★ | **엔진:** PCRE | **파일:** `logs/system_events.log`
 
-## Objective
-Detect and extract IPv6 addresses from system event logs, handling various IPv6 formats including compressed notation.
+## 목표
+시스템 이벤트 로그에서 IPv6 주소를 감지하고 추출하며, 압축 표기법을 포함한 다양한 IPv6 형식을 처리합니다.
 
-## Problem Statement
-System logs may contain IPv6 addresses in different formats due to various applications and services. Your task is to:
+## 문제 설명
+시스템 로그에는 다양한 애플리케이션과 서비스로 인해 서로 다른 형식의 IPv6 주소가 포함될 수 있습니다. 여러분의 작업은 다음과 같습니다:
 
-1. Extract all valid IPv6 addresses from the system events log
-2. Handle all standard IPv6 formats (full, compressed, mixed IPv4-mapped)
-3. Normalize them to their canonical form
-4. Identify which are link-local vs global unicast addresses
+1. 시스템 이벤트 로그에서 모든 유효한 IPv6 주소 추출
+2. 모든 표준 IPv6 형식 처리 (전체, 압축, 혼합 IPv4 매핑)
+3. 정규 형식으로 정규화
+4. 링크-로컬 주소 vs 글로벌 유니캐스트 주소 식별
 
-## IPv6 Format Requirements
-Handle these IPv6 formats:
-- **Full format:** `2001:0db8:85a3:0000:0000:8a2e:0370:7334`
-- **Compressed:** `2001:db8:85a3::8a2e:370:7334`
-- **Leading zero omission:** `2001:db8:85a3:0:0:8a2e:370:7334`  
-- **IPv4-mapped:** `::ffff:192.0.2.1`
-- **Loopback:** `::1`
-- **Link-local:** `fe80::1%eth0` (with interface)
+## IPv6 형식 요구사항
+다음 IPv6 형식들을 처리하세요:
+- **전체 형식:** `2001:0db8:85a3:0000:0000:8a2e:0370:7334`
+- **압축 형식:** `2001:db8:85a3::8a2e:370:7334`
+- **앞자리 0 생략:** `2001:db8:85a3:0:0:8a2e:370:7334`  
+- **IPv4 매핑:** `::ffff:192.0.2.1`
+- **루프백:** `::1`
+- **링크-로컬:** `fe80::1%eth0` (인터페이스 포함)
 
-## Requirements
-- Use PCRE (Perl Compatible Regular Expressions)
-- Must work with `grep -P`
-- Validate hexadecimal digits (0-9, a-f, A-F)
-- Handle double colon compression rules
-- Extract interface identifiers when present
+## 요구사항
+- PCRE (Perl 호환 정규표현식) 사용
+- `grep -P`에서 작동해야 함
+- 16진수 숫자 검증 (0-9, a-f, A-F)
+- 이중 콜론 압축 규칙 처리
+- 인터페이스 식별자가 있을 때 추출
 
-## Expected Output Format
+## 예상 출력 형식
 ```
 GLOBAL UNICAST:
 2001:db8:85a3::8a2e:370:7334
@@ -49,13 +49,13 @@ SPECIAL:
 Total IPv6 addresses found: 23
 ```
 
-## Test Cases
-Your solution should correctly handle:
-- Valid: `2001:db8::1`, `::1`, `fe80::1%eth0`
-- Invalid: `2001:db8:85a3::8a2e::7334` (double ::)
-- Edge cases: `::` (all zeros), `::ffff:0:0`
+## 테스트 케이스
+솔루션은 다음을 올바르게 처리해야 합니다:
+- 유효한 것: `2001:db8::1`, `::1`, `fe80::1%eth0`
+- 무효한 것: `2001:db8:85a3::8a2e::7334` (이중 ::)
+- 예외 케이스: `::` (모든 0), `::ffff:0:0`
 
-## Sample Command Framework
+## 샘플 명령 프레임워크
 ```bash
 # Extract IPv6 addresses using PCRE
 grep -Po "YOUR_IPV6_REGEX_HERE" ../../logs/system_events.log | \
@@ -69,35 +69,35 @@ grep -Po "YOUR_IPV6_REGEX_HERE" ../../logs/system_events.log | \
     done
 ```
 
-## Advanced Requirements
-1. **Interface Detection:** Extract network interface from link-local addresses
-2. **Scope Validation:** Identify different IPv6 address scopes
-3. **Compression Analysis:** Count how many zero groups were compressed
+## 고급 요구사항
+1. **인터페이스 감지:** 링크-로컬 주소에서 네트워크 인터페이스 추출
+2. **범위 검증:** 다양한 IPv6 주소 범위 식별
+3. **압축 분석:** 압축된 0 그룹의 개수 계산
 
-## PCRE Pattern Components
-Consider these IPv6 regex building blocks:
+## PCRE 패턴 구성 요소
+다음 IPv6 정규표현식 구성 요소를 고려하세요:
 ```regex
-# Hexadecimal group: 1-4 hex digits
+# 16진수 그룹: 1-4개의 16진수 숫자
 [0-9a-fA-F]{1,4}
 
-# Full IPv6 without compression
+# 압축 없는 전체 IPv6
 ([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}
 
-# Compressed notation (complex!)
-# Must account for :: appearing only once
+# 압축 표기법 (복잡합니다!)
+# ::가 한 번만 나타나는 것을 고려해야 합니다
 ```
 
-## Performance Considerations
-- IPv6 regex can be computationally expensive
-- Consider breaking into multiple simpler patterns
-- Test performance on larger log files
-- Memory usage should remain under 100MB
+## 성능 고려사항
+- IPv6 정규표현식은 계산 비용이 많이 들 수 있습니다
+- 여러 개의 간단한 패턴으로 나누는 것을 고려하세요
+- 더 큰 로그 파일에서 성능을 테스트하세요
+- 메모리 사용량은 100MB 이내로 유지해야 합니다
 
-## Debugging Tips
-1. Test each IPv6 format individually first
-2. Use `grep -Po` to see exact matches
-3. Validate against online IPv6 regex testers
-4. Check for edge cases with `::` placement
+## 디버깅 팁
+1. 먼저 각 IPv6 형식을 개별적으로 테스트하세요
+2. `grep -Po`를 사용하여 정확한 매치를 확인하세요
+3. 온라인 IPv6 정규표현식 테스터로 검증하세요
+4. `::` 위치와 관련된 예외 케이스를 확인하세요
 
 ---
-**Previous:** [Problem 1: IPv4 Address Validation](problem-01.md) | **Next:** [Problem 3: Private IP Range Classification](problem-03.md)
+**이전:** [문제 1: IPv4 주소 검증](problem-01.md) | **다음:** [문제 3: 사설 IP 범위 분류](problem-03.md)

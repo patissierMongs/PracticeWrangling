@@ -1,52 +1,52 @@
-# Command-Line Data Wrangling Master
-## Advanced Problem-Based Learning Workbook
+# 커맨드라인 데이터 랭글링 마스터
+## 고급 문제 기반 학습 워크북
 
-This comprehensive workbook contains **75+ practice problems** focusing on real-world data wrangling, text processing, and advanced pattern matching with command-line tools.
+이 종합적인 워크북은 커맨드라인 도구를 사용한 실무 데이터 랭글링, 텍스트 처리, 고급 패턴 매칭에 중점을 둔 **75개 이상의 실습 문제**를 포함하고 있습니다.
 
-## Project Structure
+## 프로젝트 구조
 
 ```
 pbl-workspace/
-├── logs/           # Log files for processing exercises
-├── data/           # CSV, JSON, XML sample data
-├── configs/        # Configuration files
-├── scripts/        # Your solution scripts
-├── performance/    # Performance testing tools
-├── solutions/      # Reference solutions
-└── resources/      # Cheat sheets and guides
+├── logs/           # 처리 연습용 로그 파일
+├── data/           # CSV, JSON, XML 샘플 데이터
+├── configs/        # 구성 파일
+├── scripts/        # 사용자 솔루션 스크립트
+├── performance/    # 성능 테스트 도구
+├── solutions/      # 참조 솔루션
+└── resources/      # 치트 시트 및 가이드
 ```
 
-## Getting Started
+## 시작하기
 
-1. Navigate to each part's directory
-2. Read the problem statement
-3. Work with the provided sample data
-4. Test your solutions against the reference outputs
-5. Compare performance with benchmarks
+1. 각 파트의 디렉토리로 이동
+2. 문제 설명 읽기
+3. 제공된 샘플 데이터로 작업
+4. 참조 출력과 비교하여 솔루션 테스트
+5. 벤치마크와 성능 비교
 
-## Problem Categories
+## 문제 카테고리
 
-- **Part 1**: Advanced Regex Patterns (15 problems)
-- **Part 2**: Multi-Stage Pipeline Processing (15 problems) 
-- **Part 3**: Real-time Monitoring & Alerting (8 problems)
-- **Part 4**: Performance Optimization Challenges (12 problems)
-- **Part 5**: Data Validation & Error Recovery (7 problems)
-- **Part 6**: Advanced AWK Programming (12 problems)
-- **Part 7**: Security & Forensics Scenarios (8 problems)
-- **Part 8**: Integration & Automation (12 problems)
+- **Part 1**: 고급 정규식 패턴 (15문제)
+- **Part 2**: 다단계 파이프라인 처리 (15문제)
+- **Part 3**: 실시간 모니터링 및 알림 (8문제)
+- **Part 4**: 성능 최적화 챌린지 (12문제)
+- **Part 5**: 데이터 검증 및 오류 복구 (7문제)
+- **Part 6**: 고급 AWK 프로그래밍 (12문제)
+- **Part 7**: 보안 및 포렌식 시나리오 (8문제)
+- **Part 8**: 통합 및 자동화 (12문제)
 
-**Total: 89 Problems**
+**총합: 89문제**
 
-## Prerequisites
+## 선행 요구사항
 
-- Intermediate to advanced Linux/Unix command-line experience
-- Basic knowledge of grep, sed, awk, and bash scripting
-- Understanding of regular expressions
-- Familiarity with text processing concepts
+- 중급에서 고급 수준의 Linux/Unix 커맨드라인 경험
+- grep, sed, awk, bash 스크립팅의 기본 지식
+- 정규식에 대한 이해
+- 텍스트 처리 개념에 대한 친숙함
 
-## Performance Testing
+## 성능 테스트
 
-Use the provided benchmark scripts to measure your solutions:
+제공된 벤치마크 스크립트를 사용하여 솔루션을 측정하세요:
 ```bash
 cd performance/
 ./benchmark.sh your_solution.sh

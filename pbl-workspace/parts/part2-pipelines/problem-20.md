@@ -1,25 +1,25 @@
-# Problem 20: Process Substitution Master
-**Difficulty:** ★★★★ | **Commands:** 6-8 | **Files:** Multiple files
+# 문제 20: 프로세스 치환 마스터
+**난이도:** ★★★★ | **명령 수:** 6-8 | **파일:** Multiple files
 
-## Objective
-Master process substitution `<(command)` and command substitution `$(command)` to create elegant solutions for complex data correlation tasks.
+## 목표
+프로세스 치환 `<(command)`과 명령 치환 `$(command)`를 마스터하여 복잡한 데이터 상관관계 작업에 대한 우아한 솔루션을 만듭니다.
 
-## Problem Statement
-You need to create a comprehensive analysis that correlates data from multiple log files and CSV files simultaneously. This requires advanced process substitution techniques to:
+## 문제 설명
+여러 로그 파일과 CSV 파일의 데이터를 동시에 상관관계 분석하는 포괄적인 분석을 만들어야 합니다. 이를 위해 고급 프로세스 치환 기술이 필요합니다:
 
-1. Compare active users across different log sources
-2. Find users who appear in logs but not in the user database
-3. Identify IP addresses that accessed both web and system resources
-4. Generate a correlation report showing user activity patterns
+1. 서로 다른 로그 소스에서 활성 사용자 비교
+2. 로그에는 나타나지만 사용자 데이터베이스에는 없는 사용자 찾기
+3. 웹과 시스템 리소스에 모두 접근한 IP 주소 식별
+4. 사용자 활동 패턴을 보여주는 상관관계 리포트 생성
 
-## Requirements
-- Use process substitution `<(command)` for at least 3 different comparisons
-- Implement command substitution `$(command)` for dynamic data retrieval
-- Handle different file formats (logs, CSV) in the same pipeline
-- Create temporary named pipes for complex data flows
-- Process data without creating intermediate files
+## 요구사항
+- 최소 3개의 다른 비교를 위해 프로세스 치환 `<(command)` 사용
+- 동적 데이터 검색을 위해 명령 치환 `$(command)` 구현
+- 동일 파이프라인에서 다른 파일 형식 (로그, CSV) 처리
+- 복잡한 데이터 흐름을 위한 임시 명명된 파이프 생성
+- 중간 파일을 만들지 않고 데이터 처리
 
-## Expected Output Format
+## 예상 출력 형식
 ```
 USER ACTIVITY CORRELATION REPORT
 =================================
@@ -48,20 +48,20 @@ Orphaned log entries: 52
 Cross-service access patterns: 89
 ```
 
-## Advanced Process Substitution Techniques
+## 고급 프로세스 치환 기술
 
-### 1. Multi-File Comparison
+### 1. 다중 파일 비교
 ```bash
-# Compare users from three different sources
+# 세 개의 다른 소스에서 사용자 비교
 comm -12 \
   <(awk -F',' '{print $2}' ../../data/users.csv | sort) \
   <(grep -o 'user=[^[:space:]]*' ../../logs/web_access.log | \
     cut -d'=' -f2 | sort -u)
 ```
 
-### 2. Dynamic Command Generation
+### 2. 동적 명령 생성
 ```bash
-# Generate commands based on file content
+# 파일 내용에 기반하여 명령 생성
 while read logfile; do
     echo "Processing: $logfile"
     comm -23 \
@@ -70,16 +70,16 @@ while read logfile; do
 done < <(find ../../logs -name "*.log")
 ```
 
-### 3. Complex Join Operations
+### 3. 복잡한 조인 작업
 ```bash
-# Join data from processed logs with user database
+# 처리된 로그를 사용자 데이터베이스와 조인
 join -t'|' \
   <(grep "LOGIN" ../../logs/audit.log | \
     awk '{print $6 "|" $1 " " $2}' | sort) \
   <(awk -F',' 'NR>1 {print $2 "|" $3 "|" $7}' ../../data/users.csv | sort)
 ```
 
-## Implementation Framework
+## 구현 프레임워크
 ```bash
 #!/bin/bash
 set -euo pipefail
@@ -89,7 +89,7 @@ echo "================================="
 echo "Generated: $(date)"
 echo
 
-# 1. Users in logs but not in database
+# 1. 로그에는 있지만 데이터베이스에는 없는 사용자
 echo "USERS IN LOGS BUT NOT IN DATABASE:"
 comm -23 \
   <(cat ../../logs/*.log | \
@@ -97,7 +97,7 @@ comm -23 \
     cut -d'=' -f2 | sort -u) \
   <(awk -F',' 'NR>1 {print $2}' ../../data/users.csv | sort) | \
 while read orphan_user; do
-    # Find which logs contain this user
+    # 이 사용자를 포함하는 로그 찾기
     logs_containing=$(grep -l "user=$orphan_user" ../../logs/*.log | \
                      xargs -I {} basename {} | \
                      paste -sd',' -)
@@ -107,7 +107,7 @@ done
 echo
 echo "IP ADDRESSES ACCESSING MULTIPLE SERVICES:"
 
-# 2. Find IPs in both web and system logs
+# 2. 웹과 시스템 로그 둘 다에 있는 IP 찾기
 comm -12 \
   <(grep -Eo '\b([0-9]{1,3}\.){3}[0-9]{1,3}\b' ../../logs/web_access.log | sort -u) \
   <(grep -Eo '\b([0-9]{1,3}\.){3}[0-9]{1,3}\b' ../../logs/system_events.log | sort -u) | \
@@ -117,7 +117,7 @@ while read shared_ip; do
     echo "- $shared_ip (web: $web_count requests, system: $sys_count events)"
 done
 
-# 3. User login pattern correlation using multiple process substitutions
+# 3. 다중 프로세스 치환을 사용한 사용자 로그인 패턴 상관관계
 echo
 echo "USER LOGIN PATTERNS:"
 
@@ -147,30 +147,30 @@ echo "Total unique users in logs: $(cat ../../logs/*.log | grep -o 'user=[^[:spa
 echo "Users in database: $(awk -F',' 'NR>1' ../../data/users.csv | wc -l)"
 ```
 
-## Advanced Challenges
+## 고급 챌린지
 
-### 1. Named Pipe Integration
+### 1. 명명된 파이프 통합
 ```bash
-# Create named pipes for complex data flows
+# 복잡한 데이터 흐름을 위한 명명된 파이프 생성
 mkfifo /tmp/pipe1 /tmp/pipe2 /tmp/pipe3
 
-# Process multiple streams simultaneously
+# 여러 스트림을 동시에 처리
 {
     process_web_logs > /tmp/pipe1 &
     process_system_logs > /tmp/pipe2 &  
     process_user_data > /tmp/pipe3 &
     
-    # Correlate all three streams
+    # 세 스트림 모두 상관관계 분석
     paste /tmp/pipe1 /tmp/pipe2 /tmp/pipe3 | process_correlation
 }
 
-# Cleanup
+# 정리
 rm /tmp/pipe1 /tmp/pipe2 /tmp/pipe3
 ```
 
-### 2. Dynamic Process Generation
+### 2. 동적 프로세스 생성
 ```bash
-# Generate process substitutions based on available files
+# 사용 가능한 파일에 기반하여 프로세스 치환 생성
 available_logs=($(find ../../logs -name "*.log"))
 process_list=""
 
@@ -178,13 +178,13 @@ for log in "${available_logs[@]}"; do
     process_list="$process_list <(extract_users_from '$log')"
 done
 
-# Execute dynamic process substitution (advanced bash eval usage)
+# 동적 프로세스 치환 실행 (고급 bash eval 사용)
 eval "join_multiple_streams $process_list"
 ```
 
-### 3. Error Handling in Process Substitution
+### 3. 프로세스 치환에서의 오류 처리
 ```bash
-# Handle errors in process substitution streams
+# 프로세스 치환 스트림에서 오류 처리
 {
     comm -12 \
       <(command1 || { echo "Error in stream 1" >&2; exit 1; }) \
@@ -195,23 +195,23 @@ eval "join_multiple_streams $process_list"
 }
 ```
 
-## Performance Considerations
-- Process substitution creates subshells - monitor memory usage
-- Large datasets may require streaming approaches
-- Consider using `sort -S` to limit memory for sort operations
-- Test with larger datasets to ensure scalability
+## 성능 고려사항
+- 프로세스 치환은 서브셸을 생성합니다 - 메모리 사용량을 모니터링하세요
+- 대용량 데이터셋은 스트리밍 접근 방식이 필요할 수 있습니다
+- 정렬 작업에 대한 메모리 제한을 위해 `sort -S` 사용을 고려하세요
+- 확장성을 보장하기 위해 더 큰 데이터셋으로 테스트하세요
 
-## Debugging Process Substitution
+## 프로세스 치환 디버깅
 ```bash
-# Debug by examining intermediate outputs
+# 중간 출력을 검사하여 디버깅
 echo "Stream 1:" && cat <(your_process_1)
 echo "Stream 2:" && cat <(your_process_2)
 
-# Use tee to capture intermediate results
+# tee를 사용하여 중간 결과 캐처
 comm -12 \
   <(process1 | tee debug_stream1.txt) \
   <(process2 | tee debug_stream2.txt)
 ```
 
 ---
-**Previous:** [Problem 19: Error Rate Dashboard](problem-19.md) | **Next:** [Problem 21: Real-time Log Correlation](problem-21.md)
+**이전:** [문제 19: 오류율 대시보드](problem-19.md) | **다음:** [문제 21: 실시간 로그 상관관계](problem-21.md)
