@@ -19,8 +19,8 @@
 
 ```bash
 # Git 저장소 클론
-git clone <repository-url>
-cd WranglingMaster-Korean-copy
+git clone https://github.com/patissierMongs/PracticeWrangling.git
+cd PracticeWrangling
 
 # 또는 ZIP 다운로드 후 압축 해제
 ```
@@ -71,14 +71,8 @@ $env:GEMINI_API_KEY="your-actual-api-key-here"
 [Environment]::SetEnvironmentVariable("GEMINI_API_KEY", "your-actual-api-key-here", "User")
 ```
 
-#### .env 파일 사용 (선택사항)
-```bash
-# .env 파일 생성
-cp .env.example .env
-
-# .env 파일 편집 (.env.example 참조)
-nano .env
-```
+#### .env 파일
+현재 코드는 `.env` 파일을 읽지 않습니다. `GEMINI_API_KEY`는 셸 환경변수로 설정해야 합니다.
 
 ## 🧪 설치 확인
 
@@ -203,7 +197,7 @@ export TUTOR_LANGUAGE="english"  # 현재는 korean만 지원
 ### API 사용량 확인
 ```bash
 # 예상 사용량 계산
-npm run usage
+node src/cli.js usage
 
 # 실시간 사용량 (AI 튜터 실행 중)
 # → "진도 확인" → API 통계 섹션 확인
