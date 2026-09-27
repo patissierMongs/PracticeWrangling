@@ -1,415 +1,111 @@
-# 🎓 커맨드라인 데이터 랭글링 마스터 - AI 튜터 통합
+# PracticeWrangling
 
-> **Gemini 2.5 Pro 기반 인터랙티브 학습 시스템**  
-> 89개의 실습 문제 + AI 튜터 + 개인화된 학습 추적
+grep, sed, awk 같은 명령줄 도구로 데이터 다루는 법을 문제를 풀며 익히는 한국어 CLI(Command-Line Interface) 학습 도구입니다.
 
-한국 사용자를 위해 특별히 설계된 **AI 기반 인터랙티브 데이터 랭글링 워크북**입니다. 기존의 정적인 학습 자료에서 벗어나, 실시간 피드백과 맞춤형 지도를 제공하는 차세대 학습 플랫폼입니다.
+[English](README.en.md) | **한국어**
 
-## 🚀 주요 기능
+![실행 흐름](docs/images/demo.gif)
 
-### 🤖 AI 튜터 (Gemini 2.5 Pro)
-- **실시간 질문 응답**: 언제든지 궁금한 점을 물어보세요
-- **맞춤형 힌트**: 학습자 수준에 맞는 단계별 가이드
-- **자동 평가 시스템**: 4가지 기준으로 종합적인 피드백
-- **한국어 완전 지원**: 자연스러운 한국어 소통
+위 화면은 이 저장소에서 `npm start`를 실제로 실행해 캡처했습니다. `GEMINI_API_KEY` 없이 실행했기 때문에 평가는 기본 채점으로 표시됩니다.
 
-### 📊 스마트 진도 추적
-- **개인화된 학습 분석**: 강점/약점 영역 자동 분석  
-- **점수 기반 평가**: 정확성, 성능, 코드품질, 엣지케이스 처리
-- **학습 이력 관리**: 모든 시도와 개선사항 기록
-- **성취 배지 시스템**: 달성 목표에 따른 동기부여
+| 메인 메뉴 | 문제 목록 |
+|---|---|
+| ![메인 메뉴](docs/images/main-menu.png) | ![문제 목록](docs/images/problem-list.png) |
 
-### 💡 인터랙티브 학습 경험
-- **CLI 기반 인터페이스**: 실제 개발 환경과 동일
-- **즉시 실행 & 피드백**: 코드 작성 즉시 결과 확인
-- **단계별 문제 해결**: 힌트 → 작성 → 평가 → 개선
-- **재시도 시스템**: 무제한 재도전으로 완벽 학습
+| 인터랙티브 셸 | 평가 결과 | 학습 진도 |
+|---|---|---|
+| ![인터랙티브 셸](docs/images/interactive-shell.png) | ![평가 결과](docs/images/evaluation.png) | ![학습 진도](docs/images/progress.png) |
 
----
+## 주요 기능
 
-## 📦 설치 및 시작
+- **문제 풀기**: `pbl-workspace/parts/` 아래의 문제 파일(Markdown)을 파트별로 골라 읽습니다. 긴 문제 설명은 페이지 단위로 넘겨 봅니다.
+- **인터랙티브 셸**: `shell>` 프롬프트에서 bash 명령을 바로 실행합니다. 명령은 `pbl-workspace/` 디렉터리에서 실행되며 15초가 지나면 중단됩니다. 성공한 명령은 기록되고 `submit`으로 한꺼번에 제출합니다.
+  - 셸 전용 명령: `submit`, `problem`, `help`, `history`, `clear`, `exit`
+- **평가**
+  - `GEMINI_API_KEY`가 있으면 Google Gemini(`gemini-2.5-pro`)가 정확성, 성능, 코드 품질, 예외 상황 처리를 채점하고 피드백을 줍니다.
+  - 키가 없으면 제출한 명령이 정상 종료했는지만 보고 70점(C) 또는 30점(F)을 줍니다.
+- **AI(Artificial Intelligence) 튜터 질문과 맞춤 추천**: 메뉴에서 자유 질문을 하거나 지금까지의 기록을 바탕으로 학습 추천을 받습니다. `GEMINI_API_KEY`가 필요합니다.
+- **진도 기록**: 시도 이력, 평균 점수, 파트별 점수, 이번 주 활동, 배지를 `pbl-workspace/.tutor-progress/`에 JSON(JavaScript Object Notation) 파일로 저장합니다.
+- **보조 명령**: `progress`(진도 요약), `usage`(월간 토큰 사용량 예측)
+- **실습 자료**: CSV(Comma-Separated Values), JSON, XML(eXtensible Markup Language) 형식의 가상 데이터, 설정 파일 예시, 정규식과 파이프라인 참고 문서, 성능 측정 스크립트(`pbl-workspace/performance/benchmark.sh`)
 
-### 1. 프로젝트 설정
+현재 들어 있는 문제는 5개 파트, 8개입니다. 화면에 보이는 "89문제"는 계획된 전체 수이며 아직 모두 작성되지 않았습니다. 자세한 상태는 [진행 기록](docs/PROGRESS.md)에 정리했습니다.
+
+## 사용 방법
+
+### 1. 설치
+
+Node.js와 npm(Node Package Manager), bash가 필요합니다. Node.js 22에서 실행을 확인했습니다.
 
 ```bash
-# 저장소 클론
-git clone <repository-url>
-cd WranglingMaster-Korean-copy
-
-# 의존성 설치
+git clone https://github.com/patissierMongs/PracticeWrangling.git
+cd PracticeWrangling
 npm install
-
-# 실행 권한 부여
-chmod +x src/cli.js
 ```
 
-### 2. Gemini API 키 설정
+### 2. Gemini 키 설정 (선택)
+
+AI 튜터 기능을 쓰려면 Google AI Studio에서 발급한 API(Application Programming Interface) 키를 환경변수로 지정합니다. 코드는 `.env` 파일을 읽지 않으므로 셸에서 직접 설정해야 합니다.
 
 ```bash
-# 무료 API 키 발급: https://ai.google.dev/gemini-api
-export GEMINI_API_KEY="your-gemini-api-key"
-
-# 영구 설정 (선택사항)
-echo 'export GEMINI_API_KEY="your-api-key"' >> ~/.bashrc
-source ~/.bashrc
-```
-
-### 3. AI 튜터 시작
-
-```bash
-# 인터랙티브 모드로 시작
-npm start
-# 또는
-node src/cli.js
-
-# 직접 명령어
-./src/cli.js start
-```
-
----
-
-## 💰 API 비용 예측 (무료!)
-
-### 🎉 **Gemini 2.5 Pro 무료 혜택**
-
-현재 **Gemini 2.5 Pro는 완전 무료**로 제공됩니다! 
-
-```bash
-# 사용량 예측 확인
-npm run usage
-```
-
-### 📊 월간 사용량 시나리오
-
-| 사용 패턴 | 일일 문제 | 월 토큰 예상 | 비용 | 상태 |
-|-----------|-----------|--------------|------|------|
-| **가벼운 학습** | 3문제 | ~270K 토큰 | **무료** ✅ | 추천 |
-| **보통 학습** | 10문제 | ~900K 토큰 | **무료** ✅ | 적정 |
-| **집중 학습** | 20문제 | ~1.8M 토큰 | **무료** ✅ | 가능 |
-| **전문가 코스** | 30문제+ | ~2.7M+ 토큰 | **무료** ✅ | 무제한 |
-
-### 💡 비용 최적화 팁
-
-- **힌트 사용 조절**: 먼저 스스로 고민해본 후 힌트 요청
-- **피드백 활용**: AI 평가를 통한 체계적 개선
-- **진도 추적**: 불필요한 중복 학습 방지
-- **질문 효율화**: 구체적이고 명확한 질문으로 토큰 절약
-
----
-
-## 🎯 학습 가이드
-
-### 🚀 첫 시작 추천 코스
-
-1. **환경 설정 확인**
-   ```bash
-   # 필수 도구 점검
-   which grep sed awk sort uniq cut
-   ```
-
-2. **AI 튜터와 첫 만남**
-   ```bash
-   npm start
-   # "AI 튜터에게 질문하기" 선택
-   # "데이터 랭글링이 뭔가요?" 같은 기본 질문으로 시작
-   ```
-
-3. **첫 번째 문제 도전**
-   - Part 1: 정규식 기초 (문제 1-3)
-   - 힌트 → 작성 → 평가 → 개선 사이클 경험
-
-### 📚 학습 단계별 로드맵
-
-#### **🔰 입문자 (0-20문제)**
-```
-• 기본 개념 학습: resources/ 폴더 치트시트 읽기
-• 정규식 기초: Part 1 문제 1-5
-• 간단한 파이프라인: Part 2 문제 16-20  
-• AWK 기초: Part 6 문제 58-60
-```
-
-#### **⭐ 중급자 (21-50문제)**
-```
-• 고급 정규식: Part 1 문제 6-15
-• 복잡한 파이프라인: Part 2 문제 21-30
-• 성능 기초: Part 4 문제 46-50
-• AWK 활용: Part 6 문제 61-65
-```
-
-#### **🚀 고급자 (51-89문제)**
-```
-• 성능 최적화: Part 4 전체
-• 보안 포렌식: Part 7 전체
-• 통합 프로젝트: Part 8 전체
-• 완벽한 마스터리: 모든 문제 A등급 달성
-```
-
-### 🎯 점수 시스템 이해
-
-| 등급 | 점수 범위 | 의미 | AI 튜터 피드백 |
-|------|-----------|------|----------------|
-| **A** | 90-100점 | 전문가 수준 | 고급 최적화 기법 제안 |
-| **B** | 80-89점 | 실무 활용 가능 | 성능 개선 포인트 제시 |  
-| **C** | 70-79점 | 기본기 확보 | 안정성 향상 방안 제공 |
-| **D** | 60-69점 | 개선 필요 | 기초 개념 재학습 권장 |
-| **F** | 0-59점 | 재시도 필요 | 단계별 힌트와 예제 제공 |
-
----
-
-## 🛠️ AI 튜터 활용법
-
-### 💡 효과적인 질문 방법
-
-#### ✅ **좋은 질문 예시**
-```
-"정규식에서 그리디와 논그리디의 차이점을 실제 예제로 설명해주세요"
-"Part 2-15 문제에서 파이프라인 성능을 향상시키려면 어떻게 해야 하나요?"
-"AWK에서 연관 배열을 사용하는 실제 시나리오를 알려주세요"
-```
-
-#### ❌ **피해야 할 질문**
-```
-"답을 알려주세요" (직접적인 답 요구)
-"이거 뭔가요?" (너무 모호한 질문)
-"잘 안돼요" (구체적인 상황 설명 없음)
-```
-
-### 🎯 맞춤형 학습 전략
-
-AI 튜터는 다음 정보를 기반으로 개인화된 조언을 제공합니다:
-
-- **현재 실력 수준**: 평균 점수와 완료 문제 수
-- **강약점 분석**: 카테고리별 성과 분석
-- **학습 패턴**: 문제 해결 소요 시간과 시도 횟수
-- **진도 상황**: 최근 학습 트렌드와 개선 방향
-
----
-
-## 📊 진도 추적 시스템
-
-### 🏆 성취 시스템
-
-#### 📈 **진도 배지**
-- **문제해결 입문자** - 10문제 완료
-- **데이터 랭글러** - 30문제 완료  
-- **커맨드라인 마스터** - 60문제 완료
-- **완전정복자** - 89문제 모두 완료
-
-#### ⭐ **실력 배지**  
-- **완벽주의자** - 90점 이상 달성
-- **우수한 학습자** - 평균 80점 이상
-- **카테고리 전문가** - 특정 영역 85점 이상
-
-### 📱 학습 분석 대시보드
-
-```bash
-# 상세 진도 확인
-npm run progress
-
-# 맞춤형 학습 추천
-npm start -> "맞춤 추천 받기"
-```
-
-**제공되는 분석 정보:**
-- 📊 전체 진행률 및 평균 점수  
-- 📈 카테고리별 성과 비교
-- 🎯 약점 영역과 개선 방안
-- 📅 학습 활동 패턴 분석
-- 🏆 달성 목표와 다음 단계 제안
-
----
-
-## 🔧 고급 설정
-
-### 환경 변수
-
-#### 🔐 필수 환경변수
-
-```bash
-# Gemini API 키 (필수)
-export GEMINI_API_KEY="your-actual-gemini-api-key"
-
-# 데이터베이스 비밀번호들 (프로덕션 환경)
-export DB_PROD_PASSWORD="your-production-db-password"
-export DB_READ_PASSWORD="your-read-only-db-password"
-export DB_STAGING_PASSWORD="your-staging-db-password"
-export DB_DEV_PASSWORD="your-development-db-password"
-
-# 캐시 및 세션 비밀번호
-export REDIS_CACHE_PASSWORD="your-redis-cache-password"
-export REDIS_SESSION_PASSWORD="your-redis-session-password"
-export REDIS_QUEUE_PASSWORD="your-redis-queue-password"
-
-# 기타 서비스 비밀번호
-export DB_ANALYTICS_PASSWORD="your-analytics-db-password"
-export DB_REPORT_PASSWORD="your-report-db-password"
-export DB_BACKUP_PASSWORD="your-backup-db-password"
-export BACKUP_ENCRYPTION_KEY="your-backup-encryption-key"
-export ELASTIC_PASSWORD="your-elasticsearch-password"
-export METRICS_PASSWORD="your-metrics-db-password"
-export DB_ROOT_PASSWORD="your-root-password"
-export DB_TEST_PASSWORD="your-test-db-password"
-export DB_REPLICA_PASSWORD="your-replica-db-password"
-export DB_SHARD1_PASSWORD="your-shard1-db-password"
-export DB_SHARD2_PASSWORD="your-shard2-db-password"
-export DB_MONITOR_PASSWORD="your-monitor-db-password"
-export DB_ARCHIVE_PASSWORD="your-archive-db-password"
-```
-
-#### 📝 환경변수 설정 방법
-
-**Linux/macOS:**
-```bash
-# 현재 세션에만 적용
 export GEMINI_API_KEY="your-api-key"
-
-# 영구 설정 (bash)
-echo 'export GEMINI_API_KEY="your-api-key"' >> ~/.bashrc
-source ~/.bashrc
-
-# 영구 설정 (zsh)
-echo 'export GEMINI_API_KEY="your-api-key"' >> ~/.zshrc
-source ~/.zshrc
 ```
 
-**Windows:**
-```powershell
-# PowerShell (현재 세션)
-$env:GEMINI_API_KEY="your-api-key"
+키가 없어도 문제 풀기, 인터랙티브 셸, 기본 채점, 진도 기록은 동작합니다.
 
-# 영구 설정
-[Environment]::SetEnvironmentVariable("GEMINI_API_KEY", "your-api-key", "User")
-```
+### 3. 실행
 
-#### ⚙️ 선택적 환경변수
+저장소 루트에서 실행해야 합니다. 프로그램은 현재 디렉터리 아래의 `pbl-workspace/`를 찾습니다.
 
 ```bash
-# 튜터 설정 (선택사항)
-export TUTOR_LANGUAGE="korean"           # 기본값: korean
-export TUTOR_FEEDBACK_LEVEL="detailed"   # 기본값: detailed  
-export TUTOR_WORKSPACE="/path/to/workspace"  # 기본값: ./pbl-workspace
-```
-
-#### 🔒 보안 중요사항
-
-⚠️ **절대 Git에 커밋하지 마세요:**
-- 실제 비밀번호나 API 키를 코드에 하드코딩하지 마세요
-- `.env` 파일을 사용하는 경우 반드시 `.gitignore`에 추가하세요
-- 환경변수로만 민감한 정보를 관리하세요
-
-✅ **권장 보안 관행:**
-```bash
-# .env 파일 예시 (절대 Git에 커밋 금지!)
-GEMINI_API_KEY=your-actual-api-key
-DB_PROD_PASSWORD=super-secure-password
-
-# .gitignore에 추가
-echo ".env" >> .gitignore
-echo "*.env" >> .gitignore
-```
-
-### 워크스페이스 구조
-
-```
-pbl-workspace/
-├── .tutor-progress/          # 학습 진도 데이터 (자동 생성)
-│   ├── history.json         # 모든 시도 기록
-│   ├── stats.json          # 통계 및 성과 데이터  
-│   └── user-data.json      # 개인화 설정
-├── parts/                  # 문제 카테고리별 폴더
-├── logs/                   # 실습용 로그 파일
-├── data/                   # CSV, JSON 샘플 데이터
-└── scripts/                # 사용자 솔루션 저장소
-```
-
----
-
-## 🎓 문제 카테고리 상세
-
-### Part 1: 고급 정규식 패턴 (15문제)
-- **IPv4/IPv6 유효성 검사** - 네트워크 주소 패턴 매칭
-- **RFC 호환 이메일 추출** - 복잡한 이메일 형식 처리  
-- **중첩 괄호 파싱** - 재귀적 패턴 이해
-- **신용카드 번호 마스킹** - 보안 데이터 처리
-- **타임스탬프 정규화** - 다양한 시간 형식 통일
-
-### Part 2: 다단계 파이프라인 처리 (15문제)  
-- **4-6단계 복합 명령어** - 실무 수준의 데이터 처리
-- **프로세스 치환 마스터** - 고급 bash 기법
-- **실시간 로그 분석** - 스트리밍 데이터 처리
-- **다중 파일 병합** - 복잡한 데이터 통합
-- **오류 복구 파이프라인** - 안정성 확보 방법
-
-### Part 4: 성능 최적화 (12문제)
-- **대용량 파일 처리** - 500MB+ 데이터 30초 내 처리
-- **메모리 효율 최적화** - 스트림 기반 처리 기법  
-- **병렬 처리 활용** - GNU parallel 마스터
-- **알고리즘 비교 분석** - 성능 벤치마킹
-- **실시간 모니터링** - 시스템 리소스 관리
-
-### Part 6: 고급 AWK 프로그래밍 (12문제)
-- **연관 배열 활용** - 복잡한 데이터 구조 구현
-- **사용자 정의 함수** - 재사용 가능한 코드 작성
-- **상태 머신 구현** - 복잡한 파싱 로직
-- **보고서 생성 엔진** - 전문적인 출력 형식
-- **다중 파일 처리** - FNR/NR 패턴 마스터
-
-### Part 7: 보안 및 포렌식 (8문제)
-- **브루트포스 탐지** - 공격 패턴 인식
-- **이벤트 상관관계** - 다중 소스 분석  
-- **IoC 추출** - 침해지표 자동 수집
-- **이상행위 탐지** - 통계 기반 분석
-- **로그 위생화** - 개인정보 보호 처리
-
----
-
-## 🤝 커뮤니티 & 지원
-
-### 💬 도움받기
-- **GitHub Issues**: 버그 리포트 및 기능 요청
-- **Discussion**: 학습 팁과 경험 공유  
-- **AI 튜터 질문**: 24시간 언제든지 실시간 도움
-
-### 🎯 기여하기
-- **새로운 문제 추가**: 실무 경험 기반 문제 제안
-- **솔루션 개선**: 더 효율적인 접근법 공유
-- **번역 및 문서화**: 한국어 품질 향상
-- **성능 최적화**: 벤치마크 개선 및 새로운 기법
-
-### 📈 로드맵
-- **다중 사용자 지원**: 팀 단위 학습 관리
-- **웹 인터페이스**: 브라우저 기반 학습 환경  
-- **고급 분석**: 머신러닝 기반 학습 패턴 분석
-- **인증 시스템**: 공식 인증서 발급 프로그램
-
----
-
-## 🏃‍♂️ 빠른 시작
-
-```bash
-# 1. 환경 설정
-export GEMINI_API_KEY="your-api-key"
-
-# 2. AI 튜터 시작  
 npm start
-
-# 3. 첫 문제 도전
-# → "문제 풀기" → "Part 1: 정규식" → "문제 1" 선택
-
-# 4. AI 튜터와 대화
-# → "AI 튜터에게 질문하기" → "데이터 랭글링 학습 방법을 알려주세요"
 ```
 
-**🎉 지금 시작해보세요! 89개의 실전 문제와 AI 튜터가 함께하는 데이터 랭글링 마스터 여정이 기다리고 있습니다!**
+처음 실행할 때 `stats.json`을 찾지 못한다는 오류가 나면 한 번 더 실행하면 됩니다. 진도 파일을 만드는 작업이 끝나기 전에 읽기를 시도하는 문제가 있습니다.
 
----
+### 4. 기본 사용 순서
 
-## 📄 라이선스
+1. 메인 메뉴에서 **📚 문제 풀기**를 고릅니다.
+2. 파트와 문제를 고르고 **✏️ 솔루션 작성**을 누릅니다.
+3. 문제 설명을 넘겨 본 뒤 `shell>` 프롬프트에서 명령을 시험합니다.
+   ```text
+   shell> cut -d, -f2,7,8 data/users.csv | head -4
+   shell> awk -F, 'NR>1 {print $7}' data/users.csv | sort | uniq -c | sort -rn
+   ```
+4. `history`로 기록된 명령을 확인하고 `submit`으로 제출합니다.
+5. 평가 결과를 본 뒤 다시 시도하거나 다른 문제로 넘어갑니다.
+6. **📊 진도 확인**에서 누적 기록을 봅니다.
 
-MIT License - 자유롭게 사용, 수정, 배포 가능합니다.
+### 5. 그 밖의 명령
 
-## 🙏 크레딧
+```bash
+node src/cli.js --help      # 명령 목록
+node src/cli.js progress    # 진도 요약 (진도 파일이 있어야 함)
+node src/cli.js usage       # 월간 토큰 사용량 예측
+npm run test:local -- 01 <답안파일.sh>   # 답안 스크립트를 로컬에서 실행
+```
 
-- **Gemini 2.5 Pro API**: Google AI의 무료 API 제공
-- **한국어 지원**: 한국 개발자 커뮤니티를 위한 특별 최적화
-- **실무 기반**: 현업 DevOps, 보안 분석가, 데이터 엔지니어의 실제 경험 반영
+`pbl-workspace/logs/` 디렉터리는 `.gitignore`에 포함되어 저장소에 없습니다. `logs/web_access.log` 같은 로그 파일을 쓰는 문제는 파일을 따로 준비해야 합니다. `data/` 아래 파일은 바로 쓸 수 있습니다.
+
+## 기술 스택
+
+| 구분 | 내용 |
+|---|---|
+| 언어 | JavaScript(Node.js, CommonJS), Bash |
+| CLI | commander ^12.0.0, inquirer ^8.2.6, chalk ^4.1.2, ora ^5.4.1 |
+| AI | @google/generative-ai ^0.21.0 (모델 `gemini-2.5-pro`) |
+| 파일 처리 | fs-extra ^11.2.0 |
+| 개발 도구 | nodemon ^3.1.0, jest ^29.7.0 (테스트 파일은 아직 없음) |
+
+`package.json`에는 yaml, marked, marked-terminal도 의존성으로 적혀 있지만 현재 코드에서 불러오지 않습니다.
+
+## 문서
+
+- [진행 기록](docs/PROGRESS.md): 최종 목표, 기능별 구현 상태, 작업 이력
+- [설치 가이드](docs/SETUP.md): 설치와 문제 해결
+- [워크북 요청서](docs/REQUEST.md): 문제 구성에 대한 최초 요구사항
+- [워크북 안내](pbl-workspace/README.md), [시작하기](pbl-workspace/GETTING_STARTED.md)
+
+## 라이선스
+
+`package.json`에 MIT 라이선스로 표기되어 있습니다. 별도의 LICENSE 파일은 없습니다.
